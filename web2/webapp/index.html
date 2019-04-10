@@ -11,10 +11,10 @@
     <title>PORTAI</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link href="../css/simple-sidebar.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
@@ -26,7 +26,7 @@
         <div class="border-right" id="sidebar-wrapper">
             <div class="sidebar-heading" style="height:70px">PORTAI</div>
             <div class="list-group list-group-flush">
-                <a href="index.html" style="text-decoration-line:none text-decoration:none !important" class="list-group-item list-group-item-action"><i class="fa fa-plus-square"> 새로 들어온 작업</i> </a>
+                <a href="index.html" style="text-decoration-line:none" class="list-group-item list-group-item-action"><i class="fa fa-plus-square"> 새로 들어온 작업</i> </a>
                 <a href="Recent.html" class="list-group-item list-group-item-action"><i class="fa fa-history"> 최근 작업 사진</i></a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -90,13 +90,35 @@
             <div class="container-fluid">
                 <h1 class="mt-4">새로들어온작업</h1>
                 <p>사진 업로드, 드래그 앤 드래그</p>
-                <div class="input-group mb-3">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile02">
-                        <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+                <p>A Bootstrap/jQuery plugin to preview image uploads.</p>
+
+                <!-- bootstrap-imageupload. -->
+                <div class="imageupload panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <h3 class="panel-title pull-left">Upload Image</h3>
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default active">File</button>
+                            <button type="button" class="btn btn-default">URL</button>
+                        </div>
                     </div>
-                    <div class="input-group-append">
-                        <span class="input-group-text" id="">Upload</span>
+                    <div class="file-tab panel-body">
+                        <label class="btn btn-default btn-file">
+                            <span>Browse</span>
+                            <!-- The file is stored here. -->
+                            <input type="file" name="image-file">
+                        </label>
+                        <button type="button" class="btn btn-default">Remove</button>
+                    </div>
+                    <div class="url-tab panel-body">
+                        <div class="input-group">
+                            <input type="text" class="form-control hasclear" placeholder="Image URL">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default">Submit</button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-default">Remove</button>
+                        <!-- The URL is stored here. -->
+                        <input type="hidden" name="image-url">
                     </div>
                 </div>
             </div>
@@ -107,9 +129,15 @@
     <!-- /#wrapper -->
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap-imageupload.js"></script>
+    <script>
+        var $imageupload = $('.imageupload');
+        $imageupload.imageupload();
+    </script>
     <!-- Menu Toggle Script -->
     <script>
         $("#menu-toggle").click(function(e) {
