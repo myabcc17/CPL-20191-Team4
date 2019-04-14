@@ -31,21 +31,19 @@ if (typeof jQuery === 'undefined') {
         return this.filter('div').each(function() {
             if (methods[methodOrOptions]) {
                 methods[methodOrOptions].apply($(this), Array.prototype.slice.call(givenArguments, 1));
-            }
-            else if (typeof methodOrOptions === 'object' || !methodOrOptions) {
+            } else if (typeof methodOrOptions === 'object' || !methodOrOptions) {
                 methods.init.apply($(this), givenArguments);
-            }
-            else {
+            } else {
                 throw new Error('Method "' + methodOrOptions + '" is not defined for imageupload.');
             }
         });
     };
 
     $.fn.imageupload.defaultOptions = {
-        allowedFormats: [ 'jpg', 'jpeg', 'png', 'gif' ],
-        maxWidth: 250,
-        maxHeight: 250,
-        maxFileSizeKb: 2048
+        allowedFormats: ['jpg', 'jpeg', 'png', 'gif'],
+        maxWidth: 500,
+        maxHeight: 500,
+        maxFileSizeKb: 4096
     };
 
     // -----------------------------------------------------------------------------
@@ -70,14 +68,14 @@ if (typeof jQuery === 'undefined') {
         resetUrlTab($urlTab);
         showFileTab($fileTab);
         enable.call($imageupload);
-        
+
         // Unbind all previous bound event handlers.
         $fileTabButton.off();
         $browseFileButton.off();
         $removeFileButton.off();
-        $urlTabButton.off();
-        $submitUrlButton.off();
-        $removeUrlButton.off();
+        $urlTabButton.hide();
+        $submitUrlButton.hide();
+        $removeUrlButton.hide();
 
         $fileTabButton.on('click', function() {
             $(this).blur();
@@ -149,8 +147,7 @@ if (typeof jQuery === 'undefined') {
 
     function isValidImageFile(file, callback) {
         // Check file size.
-        if (file.size / 1024 > options.maxFileSizeKb)
-        {
+        if (file.size / 1024 > options.maxFileSizeKb) {
             callback(false, 'File is too large (max ' + options.maxFileSizeKb + 'kB).');
             return;
         }
@@ -159,8 +156,7 @@ if (typeof jQuery === 'undefined') {
         var fileExtension = getFileExtension(file.name);
         if ($.inArray(fileExtension, options.allowedFormats) > -1) {
             callback(true, 'Image file is valid.');
-        }
-        else {
+        } else {
             callback(false, 'File type is not allowed.');
         }
     }
@@ -185,8 +181,7 @@ if (typeof jQuery === 'undefined') {
                 var fileExtension = getFileExtension(tempUrl);
                 if ($.inArray(fileExtension, options.allowedFormats) > -1) {
                     callback(true, 'Image URL is valid.');
-                }
-                else {
+                } else {
                     callback(false, 'File type is not allowed.');
                 }
             }
@@ -239,7 +234,7 @@ if (typeof jQuery === 'undefined') {
         var $browseFileButton = $fileTab.find('.btn:eq(0)');
         var $removeFileButton = $fileTab.find('.btn:eq(1)');
         var $fileInput = $browseFileButton.find('input');
-        
+
         $fileTab.find('.alert').remove();
         $fileTab.find('img').remove();
         $browseFileButton.find('span').text('Browse');
@@ -251,7 +246,7 @@ if (typeof jQuery === 'undefined') {
         }
 
         $browseFileButton.prop('disabled', true);
-        
+
         var file = $fileInput[0].files[0];
 
         isValidImageFile(file, function(isValid, message) {
@@ -271,8 +266,7 @@ if (typeof jQuery === 'undefined') {
                 };
 
                 fileReader.readAsDataURL(file);
-            }
-            else {
+            } else {
                 $fileTab.prepend(getAlertHtml(message));
                 $browseFileButton.find('span').text('Browse');
                 $fileInput.val('');
@@ -324,7 +318,7 @@ if (typeof jQuery === 'undefined') {
 
         $urlInput.prop('disabled', true);
         $submitUrlButton.prop('disabled', true);
-        
+
         isValidImageUrl(url, function(isValid, message) {
             if (isValid) {
                 // Submit URL value.
@@ -333,8 +327,7 @@ if (typeof jQuery === 'undefined') {
                 // Show thumbnail and remove button.
                 $(getImageThumbnailHtml(url)).insertAfter($submitUrlButton.closest('.input-group'));
                 $removeUrlButton.css('display', 'inline-block');
-            }
-            else {
+            } else {
                 $urlTab.prepend(getAlertHtml(message));
             }
 
