@@ -20,152 +20,99 @@
 
 <body>
 
-    <div class="d-flex" id="wrapper">
-
-        <!-- Sidebar -->
-        <div class="border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading" style="height:70px">PORTAI</div>
-            <div class="list-group list-group-flush">
-                <a href="index.html" style="text-decoration-line:none" class="list-group-item list-group-item-action"><i class="fa fa-plus-square"> 새로 들어온 작업</i> </a>
-                <a href="Recent.html" class="list-group-item list-group-item-action"><i class="fa fa-history"> 최근 작업 사진</i></a>
-
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <li>
-                        <a href="#" class="list-group-item list-group-item-action"><i class="fa fa-rocket"> 작업 전</i></a>
-                    </li>
-                </div>
-
-
-                <a href="Finish.html" class="list-group-item list-group-item-action"><i class="fa fa-flag-checkered"> 작업완료</i></a>
-                <a href="Important.html" class="list-group-item list-group-item-action"><i class="fa fa-star"> 중요</i></a>
-                <a href="Trash.html" class="list-group-item list-group-item-action"><i class="fa fa-trash-alt"> 휴지통</i></a>
-
+    <div class="container-fluid" style="position: absolute; width:500px; height:500px; left:50%; top:50%; margin-left: -250px; margin-top:-350px; background:white">
+        <div class="row justify-content-center">
+            <div>
+                <span style="font-size:40px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; vertical-align: middle">PORTAI</span>
+                <br>
+                <span style="font-size:20px; font-weight:bold; margin-left: 14px;">회원가입</span>
+                <br>
             </div>
-        </div>
-        <!-- /#sidebar-wrapper -->
+            <div class="card" style="width:400px; height: 700px; margin-top: 50px; border: none">
+                <form class="form-horizontal" method="post" action="#">
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-
-            <nav class="navbar navbar-expand-lg navbar-light border-bottom">
-                <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto mt-lg-0">
-                        <li class="nav-item active">
-                            <nav class="navbar navbar-light justify-content-between">
-                                <form class="form-inline">
-                                    <input class="form-control mr-sm-2" type="search" @click="" placeholder="Search" aria-label="Search" aria-hidden="true">
-                                    <button class="btn btn-primary mr-sm" type="submit"><i class="fa fa-search"></i></button>
-                                </form>
-                            </nav>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-item" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top: 5px">
-                                <i class="fa fa-bell" style="font-size: 1.8rem"></i></a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">지원 요청</a>
-                                <a class="dropdown-item" href="#">피드백 공유</a>
+                    <div class="form-group">
+                        <div class="cols-sm">
+                            <div class="input-group">
+                                <span class="input-group-addon"></span>
+                                <input type="email" class="form-control" name="name" id="input-group" placeholder="*이메일 example@example.com" />
                             </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top: 5px">
-                에이미스튜디오 
-              </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">로그인</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
-            <div class="container-fluid">
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="card-header">Register</div>
-                            <div class="card-body">
-
-                                <form class="form-horizontal" method="post" action="#">
-
-                                    <div class="form-group">
-                                        <div class="cols-sm-10">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"></span>
-                                                <input type="text" class="form-control" name="name" id="name" placeholder="*이메일 example@example.com" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="cols-sm-10">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"></span>
-                                                <input type="text" class="form-control" name="email" id="email" placeholder="*비밀번호(영문+숫자, 8~20자)" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="cols-sm-10">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"></span>
-                                                <input type="text" class="form-control" name="username" id="username" placeholder="*비밀번호 재확인" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="cols-sm-10">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"></span>
-                                                <input type="password" class="form-control" name="password" id="password" placeholder="*이름/매장명" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="cols-sm-10">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"></span>
-                                                <input type="password" class="form-control" name="confirm" id="confirm" placeholder="*휴대폰" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
-                                    </div>
-                                    <div class="login-register">
-                                        <a href="index.php">Login</a>
-                                    </div>
-                                </form>
-                            </div>
-
                         </div>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"></span>
+                                <input type="password" class="form-control" name="email" id="input-group" placeholder="*비밀번호(영문+숫자, 8~20자)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"></span>
+                                <input type="password" class="form-control" name="username" id="input-group" placeholder="*비밀번호 재확인" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"></span>
+                                <input type="text" class="form-control" name="password" id="input-group" placeholder="*이름/매장명" />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon "></span>
+                                    <input type="tel" class="form-control" name="confirm" id="input-group" placeholder="*휴대폰 " />
+                                    <div>
+                                        <button type="button" class="btn btn-primary login-button" style="height:45px; background: white; color: gray; border-color: gray">인증받기</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span style="font-size:11px; color:slategrey ">* 인증번호 전송은 통신사에 따라 최대 1분까지 소요될 수 있습니다.</span><br>
+                    <span style="font-size:11px; color:slategrey ">* 인증번호가 도착하지 않을 경우 '인증번호 재전송'을 눌러주세요.</span><br><br>
+
+                    <input type="checkbox"> <label style="font-weight: bold; vertical-align: middle">전체 약관에 동의합니다.</label><br>
+                    <input type="checkbox"> <label style=" vertical-align: middle">필수 항목에 동의합니다.</label><br>
+                    <a href="http://www.naver.com" style="font-size:13px; margin-left: 30px;text-decoration-color: gray; text-decoration-line: underline; color:gray;"> PORTAI 이용약관</a>
+                    <a href="http://www.naver.com" style="font-size:13px; margin-left: 10px;text-decoration-color: gray; text-decoration-line: underline; color:gray;"> 개인정보 수집이용 동의</a>
+                    <br><br>
+                    <input type="checkbox"> <label style=" vertical-align: middle">광고성 정보 수신 동의(선택)</label><br>
+                    <span style="font-size:13px; color:slategrey ">* 만 14세 이상 회원만 가입 가능합니다. </span>
+                    <a href="http://www.naver.com" style="font-size:13px; margin-left: 10px;text-decoration-color: gray; text-decoration-line: underline; color:gray;"> 내용보기</a><br><br>
+                    <div>
+
+                    </div>
+                    <div class="form-group ">
+                        <button type="button " class="btn btn-primary btn-lg btn-block login-button ">가입완료</button>
+                    </div>
+
+                </form>
             </div>
-            <!-- /#page-content-wrapper -->
+
 
         </div>
-        <!-- /#wrapper -->
+    </div>
 
-        <!-- Bootstrap core JavaScript -->
-        <script src="../vendor/jquery/jquery.min.js"></script>
-        <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="../vendor/jquery/jquery.min.js "></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js "></script>
 
 
-        <!-- Menu Toggle Script -->
-        <script>
-            $("#menu-toggle").click(function(e) {
-                e.preventDefault();
-                $("#wrapper").toggleClass("toggled");
-            });
-        </script>
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle ").click(function(e) {
+            e.preventDefault();
+            $("#wrapper ").toggleClass("toggled ");
+        });
+    </script>
 
 </body>
 

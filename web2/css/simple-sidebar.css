@@ -8,6 +8,15 @@ body {
     overflow-x: hidden;
 }
 
+#input-group {
+    background-color: gainsboro;
+    color: gray;
+    font-size: 13px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 50px;
+    height: 45px;
+}
+
 #sidebar-wrapper {
     min-height: 100vh;
     top: 1.9rem;
