@@ -41,9 +41,9 @@ if (typeof jQuery === 'undefined') {
 
     $.fn.imageupload.defaultOptions = {
         allowedFormats: ['jpg', 'jpeg', 'png', 'gif'],
-        maxWidth: 500,
-        maxHeight: 500,
-        maxFileSizeKb: 4096
+        maxWidth: 250,
+        maxHeight: 250,
+        maxFileSizeKb: 2048
     };
 
     // -----------------------------------------------------------------------------
