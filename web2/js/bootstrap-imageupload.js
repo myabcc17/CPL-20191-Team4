@@ -73,9 +73,9 @@ if (typeof jQuery === 'undefined') {
         $fileTabButton.off();
         $browseFileButton.off();
         $removeFileButton.off();
-        $urlTabButton.hide();
-        $submitUrlButton.hide();
-        $removeUrlButton.hide();
+        $urlTabButton.off();
+        $submitUrlButton.off();
+        $removeUrlButton.off();
 
         $fileTabButton.on('click', function() {
             $(this).blur();
