@@ -1,8 +1,8 @@
 var express = require('express');
 var app = express();
-var AWS = require('aws-sdk');
-AWS.config.region = 'ap-northeast-2';
-var ex2 = new AWS.EC2();
+//var AWS = require('aws-sdk');
+//AWS.config.region = 'ap-northeast-2';
+//var ex2 = new AWS.EC2();
 var router = require('./router/main')(app);
 
 app.set('views', __dirname + '/webapp');
