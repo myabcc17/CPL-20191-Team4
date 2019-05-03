@@ -37,7 +37,7 @@ module.exports = function(app) {
         });
     });
     // GET SINGLE MEMBER
-    app.get('/api/members/:email', function(req, res) {
+    app.post('/api/members/:email', function(req, res) {
         Member.findOne({ _email: req.params.email }, function(err, member) {
             if (err)
                 return res.status(500).json({ error: err });
@@ -47,7 +47,7 @@ module.exports = function(app) {
         });
     });
     // GET MEMBER BY NAME
-    app.post('/api/members/name/:name', function(req, res) {
+    app.get('/api/members/name/:name', function(req, res) {
         Member.findOne({ _name: req.params.name }, function(err, book) {
             if (err)
                 return res.status(500).json({ error: err });
