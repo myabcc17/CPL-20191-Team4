@@ -47,7 +47,7 @@ module.exports = function(app) {
         });
     });
     // GET MEMBER BY NAME
-    app.get('/api/members/name/:name', function(req, res) {
+    app.post('/api/members/name/:name', function(req, res) {
         Member.findOne({ _name: req.params.name }, function(err, book) {
             if (err)
                 return res.status(500).json({ error: err });
