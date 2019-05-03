@@ -64,7 +64,7 @@ module.exports = function(app) {
         member.password = req.body.password;
         member.name = req.body.name;
         member.phone = req.body.phone;
-        member.registered_date = new Date(req.body.registered_date);
+        //member.registered_date = new Date(req.body.registered_date);
 
         member.save(function(err) {
             if (err) {
