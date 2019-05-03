@@ -1,14 +1,16 @@
-var express = require('express');
+express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-app.use(express.static(__dirname + '/css'));
-app.use(express.static(__dirname + '/js'));
-app.use(express.static(__dirname + '/fonts'));
-app.use(express.static(__dirname + '/model'));
-app.use(express.static(__dirname + '/vendor'));
-app.use(express.static(__dirname + '/webapp'));
+app.use('/js', express.static(__dirname + '/js'));
+app.use('/css', express.static(__dirname + '/css'));
+app.use('/css', express.static(__dirname + '/vendor/bootstrap/css'));
+app.use('/js', express.static(__dirname + '/vendor/bootstrap/jquery'));
+app.use('/js', express.static(__dirname + '/vendor/bootstrap/js'));
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); 
+app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); 
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 /*CONFIGURE APP TO USE bodyParser*/
 app.use(bodyParser.urlencoded({ exteded: true }));
