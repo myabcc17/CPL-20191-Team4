@@ -38,7 +38,7 @@ module.exports = function(app) {
     });
     // GET SINGLE MEMBER
     app.post('/api/members/:email', function(req, res) {
-        Member.findOne({ _email: req.params.email }, function(err, member) {
+        Member.findOne({ email: req.body.email }, function(err, member) {
             if (err)
                 return res.status(500).json({ error: err });
             if (!member)
