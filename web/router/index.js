@@ -1,5 +1,5 @@
 var Member = require('../model/member.js');
-var path = __dirname + '/public/webapp/';
+var path = __dirname + '../public/webapp/';
 module.exports = function(app) {
     /*WebPage*/
     app.get('/', function(req, res) {
