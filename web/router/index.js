@@ -1,4 +1,4 @@
-var Member = require('./model/member.js');
+var Member = require('../model/member.js');
 
 module.exports = function(app) {
     /*WebPage*/
