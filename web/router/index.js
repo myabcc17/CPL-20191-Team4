@@ -1,3 +1,5 @@
+var Member = require('./model/member.js');
+
 module.exports = function(app) {
     /*WebPage*/
     app.get('/', function(req, res) {
