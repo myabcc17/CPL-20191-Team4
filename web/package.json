@@ -2,6 +2,7 @@
     "title": "Simple Sidebar",
     "name": "startbootstrap-simple-sidebar",
     "version": "5.0.0",
+    "main": "server.js",
     "description": "A simple sidbar navigation HTMl template built with Bootstrap",
     "keywords": [
         "css",
@@ -33,6 +34,7 @@
         "express-generator": "^4.16.0",
         "jquery": "^3.4.1",
         "mongoose": "^5.5.5",
+        "path": "^0.12.7",
         "popper.js": "^1.15.0"
     },
     "devDependencies": {

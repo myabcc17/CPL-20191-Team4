@@ -1,16 +1,18 @@
-express = require('express');
+var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var path = require('path');
 
-app.use('/js', express.static(__dirname + '/js'));
-app.use('/css', express.static(__dirname + '/css'));
-app.use('/css', express.static(__dirname + '/vendor/bootstrap/css'));
-app.use('/js', express.static(__dirname + '/vendor/bootstrap/jquery'));
-app.use('/js', express.static(__dirname + '/vendor/bootstrap/js'));
-app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); 
-app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); 
-app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use(express.static('public'));
+//app.use('/js', express.static(path.join(__dirname, 'js')));
+//app.use('/css', express.static(path.join(__dirname, 'css')));
+//app.use('/css', express.static(path.join(__dirname, 'vendor','bootstrap', 'css')));
+//app.use('/js', express.static(path.join(__dirname, 'vendor', 'bootstrap', 'jquery')));
+//app.use('/js', express.static(path.join(__dirname, 'vendor', 'bootstrap', 'js')));
+//app.use('/js', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist', 'js'))); 
+//app.use('/js', express.static(path.join(__dirname, 'node_modules', 'jquery', 'dist'))); 
+//app.use('/css', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist', 'css')));
 
 /*CONFIGURE APP TO USE bodyParser*/
 app.use(bodyParser.urlencoded({ exteded: true }));
@@ -22,7 +24,7 @@ var port = process.env.PORT || 8080;
 /*CONFIGURE ROUTER*/
 var router = require('./router/')(app);
 
-app.set('views', __dirname + '/webapp');
+app.set('views', __dirname + '/public/webapp');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
