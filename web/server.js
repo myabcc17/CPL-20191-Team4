@@ -42,4 +42,4 @@ db.once('open', function() {
 
 mongoose.connect('mongodb://localhost/PORTAI');
 
-var Member = require('./model/member');
+var Member = require('./model/member.js');
