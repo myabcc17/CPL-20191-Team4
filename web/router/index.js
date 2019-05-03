@@ -1,5 +1,5 @@
 var Member = require('../model/member.js');
-
+var path = __dirname + '/public/webapp/';
 module.exports = function(app) {
     /*WebPage*/
     app.get('/', function(req, res) {
@@ -73,7 +73,7 @@ module.exports = function(app) {
                 return;
             }
 
-            res.sendFile("public/webapp/Login.html");
+            res.sendFile(path + "Login.html");
         });
     });
 
