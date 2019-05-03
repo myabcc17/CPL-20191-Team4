@@ -73,8 +73,7 @@ module.exports = function(app) {
                 return;
             }
 
-            res.json({ result: 1 });
-            app.post('/public/webapp/Login.html');
+            res.sendFile("public/webapp/Login.html");
         });
     });
 
