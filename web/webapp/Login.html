@@ -9,25 +9,26 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         body {
-            background-color: #f1f1f1;
+            background-color: white;
+        }
+        
+        h2 {
+            margin-top: 250px;
         }
         
         .bslf {
-            width: 350px;
-            margin: 120px auto;
-            padding: 25px 20px;
+            width: 300px;
+            height: 350px;
+            margin: 50px auto;
             background: white;
-            box-shadow: 2px 2px 4px #ab8de0;
             border-radius: 5px;
             color: black;
         }
         
         .bslf h2 {
-            margin-top: 0px;
             margin-bottom: 15px;
             padding-bottom: 5px;
             border-radius: 10px;
-            border: 1px solid #25055f;
         }
         
         .bslf a {
@@ -42,6 +43,11 @@
         .bslf .checkbox-inline {
             padding-top: 7px;
         }
+        
+        .bslf .form-group .form-control {
+            height: 50px;
+            background: gainsboro;
+        }
     </style>
 </head>
 
@@ -50,23 +56,27 @@
     <div class="bslf">
         <form action="" method="post">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Username" required="required">
+                <input type="text" class="form-control" placeholder="이메일" required="required">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" required="required">
+                <input type="password" class="form-control" placeholder="비밀번호" required="required">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-lg btn-primary pull-center" style="border: none;background:gray;width:300px; height:50px; font-size: 14px; color:gray">로그인</button>
             </div>
             <div class="form-group clearfix">
-                <label class="checkbox-inline pull-left"><input type="checkbox"> Remember me</label>
-                <button type="submit" class="btn btn-primary pull-right">Log in</button>
+                <label class="checkbox-inline pull-left"><input type="checkbox"> 로그인 정보 저장</label>
+                <a href="#" class="pull-right" style="margin-top: 7px">비밀번호를 잊으셨나요?</a>
             </div>
             <div class="clearfix">
-                <a href="#" class="pull-left">Forgot Password?</a>
-                <a href="#" class="pull-right">Create an Account</a>
+                <span class="pull-center">아직 PORTAI의 회원이 아니신가요?</span>
+                <a href="Register.html" class="pull-right">가입하기</a>
             </div>
         </form>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js "></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js "></script>
 
 </html>

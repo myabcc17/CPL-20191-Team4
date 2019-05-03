@@ -8,6 +8,34 @@ body {
     overflow-x: hidden;
 }
 
+.left {
+    width: 25%;
+    height: 500px;
+    float: left;
+    box-sizing: border-box;
+    background: gainsboro;
+}
+
+.right {
+    width: 75%;
+    float: right;
+    box-sizing: border-box;
+}
+
+.new-task {
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.add-image-area {
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 #input-group {
     background-color: gainsboro;
     color: gray;

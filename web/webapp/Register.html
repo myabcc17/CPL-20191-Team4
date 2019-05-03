@@ -35,7 +35,12 @@
                         <div class="cols-sm">
                             <div class="input-group">
                                 <span class="input-group-addon"></span>
-                                <input type="email" class="form-control" name="name" id="input-group" placeholder="*이메일 example@example.com" />
+                                <input type="email" class="form-control" name="emailaddress" id="input-group" placeholder="*이메일 example@example.com" />
+                                <script>
+                                    var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+                                    if (regExp.test(document.getElementsByName("email").val())) return true;
+                                    else return false;
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -43,7 +48,7 @@
                         <div class="cols-sm-10">
                             <div class="input-group">
                                 <span class="input-group-addon"></span>
-                                <input type="password" class="form-control" name="email" id="input-group" placeholder="*비밀번호(영문+숫자, 8~20자)" />
+                                <input type="password" class="form-control" name="pwd" id="input-group" placeholder="*비밀번호(영문+숫자, 8~20자)" />
                             </div>
                         </div>
                     </div>
@@ -51,7 +56,7 @@
                         <div class="cols-sm-10">
                             <div class="input-group">
                                 <span class="input-group-addon"></span>
-                                <input type="password" class="form-control" name="username" id="input-group" placeholder="*비밀번호 재확인" />
+                                <input type="password" class="form-control" name="pwd2" id="input-group" placeholder="*비밀번호 재확인" />
                             </div>
                         </div>
                     </div>
@@ -59,7 +64,7 @@
                         <div class="cols-sm-10">
                             <div class="input-group">
                                 <span class="input-group-addon"></span>
-                                <input type="text" class="form-control" name="password" id="input-group" placeholder="*이름/매장명" />
+                                <input type="text" class="form-control" name="name" id="input-group" placeholder="*이름/매장명" />
                             </div>
                         </div>
                     </div>
@@ -68,7 +73,7 @@
                             <div class="cols-sm-10">
                                 <div class="input-group">
                                     <span class="input-group-addon "></span>
-                                    <input type="tel" class="form-control" name="confirm" id="input-group" placeholder="*휴대폰 " />
+                                    <input type="tel" class="form-control" name="phone" id="input-group" placeholder="*휴대폰 " />
                                     <div>
                                         <button type="button" class="btn btn-primary login-button" style="height:45px; background: white; color: gray; border-color: gray">인증받기</button>
                                     </div>
@@ -76,10 +81,11 @@
                             </div>
                         </div>
                     </div>
+                    <!--아임포트 인증번호 API 구현하기-->
                     <span style="font-size:11px; color:slategrey ">* 인증번호 전송은 통신사에 따라 최대 1분까지 소요될 수 있습니다.</span><br>
                     <span style="font-size:11px; color:slategrey ">* 인증번호가 도착하지 않을 경우 '인증번호 재전송'을 눌러주세요.</span><br><br>
 
-                    <input type="checkbox"> <label style="font-weight: bold; vertical-align: middle">전체 약관에 동의합니다.</label><br>
+                    <input type="checkbox" id="total_check"> <label style="font-weight: bold; vertical-align: middle">전체 약관에 동의합니다.</label><br>
                     <input type="checkbox"> <label style=" vertical-align: middle">필수 항목에 동의합니다.</label><br>
                     <a href="http://www.naver.com" style="font-size:13px; margin-left: 30px;text-decoration-color: gray; text-decoration-line: underline; color:gray;"> PORTAI 이용약관</a>
                     <a href="http://www.naver.com" style="font-size:13px; margin-left: 10px;text-decoration-color: gray; text-decoration-line: underline; color:gray;"> 개인정보 수집이용 동의</a>
@@ -91,7 +97,7 @@
 
                     </div>
                     <div class="form-group ">
-                        <button type="button " class="btn btn-primary btn-lg btn-block login-button ">가입완료</button>
+                        <input type="submit" id="btn_register" value="회원가입" class="btn btn-primary btn-lg btn-block login-button ">
                     </div>
                     <div class="form-group ">
                         <a href="index.html" style="text-decoration-line:none; text-align: center" class="list-group-item list-group-item-action"><i class="fa fa-home"> 홈으로</i> </a>
@@ -106,7 +112,8 @@
     <!-- Bootstrap core JavaScript -->
     <script src="../vendor/jquery/jquery.min.js "></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js "></script>
-
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.4.js"></script>
 
     <!-- Menu Toggle Script -->
     <script>
@@ -116,6 +123,54 @@
         });
     </script>
 
+    <!-- 모든 항목 잘 체크했는지 검사하는 스크립트-->
+    <script>
+        function validate() {
+            var re = /^[a-zA-Z0-9]{4,12}$/ // 아이디와 패스워드가 적합한지 검사할 정규식 
+            var re2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; // 이메일이 적합한지 검사할 정규식 
+
+            var email = document.getElementById("email");
+            var pw = document.getElementById("pw");
+            var pw2 = document.getElementById("pw2");
+            var name = document.getElementById("name");
+
+            if (email.value == "") {
+                alert("이메일을 입력해 주세요");
+                email.focus();
+                return false;
+            }
+
+            if (!check(re2, email, "적합하지 않은 이메일 형식입니다.")) {
+                return false;
+            }
+
+            if (!check(re, pw, "패스워드는 8~20자의 영문 대소문자와 숫자로만 입력")) {
+                return false;
+            }
+
+            if (pw.value != pw2.value) {
+                alert("비밀번호가 다릅니다. 다시 확인해 주세요.");
+                join.pw2.value = "";
+                join.pw2.focus();
+                return false;
+            }
+
+            if (name.value == "") {
+                alert("이름을 입력해 주세요");
+                join.name.focus();
+                return false;
+            }
+        }
+
+        function check(re, what, message) {
+            if (re.test(what.value)) {
+                return true;
+            }
+            alert(message);
+            what.value = "";
+            what.focus();
+        }
+    </script>
 </body>
 
 </html>
