@@ -74,6 +74,7 @@ module.exports = function(app) {
             }
 
             res.json({ result: 1 });
+            app.post('/public/webapp/Login.html');
         });
     });
 
