@@ -29,7 +29,7 @@
                 <br>
             </div>
             <div class="card" style="width:400px; height: 700px; margin-top: 50px; border: none">
-                <form class="form-horizontal" method="post" action="/api/members">
+                <form class="form-horizontal" name="form_regi" method="post" action="/api/members">
 
                     <div class="form-group">
                         <div class="cols-sm">
@@ -80,28 +80,39 @@
                     <span style="font-size:11px; color:slategrey ">* 인증번호 전송은 통신사에 따라 최대 1분까지 소요될 수 있습니다.</span><br>
                     <span style="font-size:11px; color:slategrey ">* 인증번호가 도착하지 않을 경우 '인증번호 재전송'을 눌러주세요.</span><br><br>
 
-                    <input type="checkbox" id="total_check"> <label style="font-weight: bold; vertical-align: middle">전체 약관에 동의합니다.</label><br>
-                    <input type="checkbox"> <label style=" vertical-align: middle">필수 항목에 동의합니다.</label><br>
+                    <input type="checkbox" id="total_check" onclick="tot_ch()"> <label style="font-weight: bold; vertical-align: middle">전체 약관에 동의합니다.</label><br>
+                    <input type="checkbox" name="mycheck"> <label style=" vertical-align: middle">필수 항목에 동의합니다.</label><br>
                     <a href="http://www.naver.com" style="font-size:13px; margin-left: 30px;text-decoration-color: gray; text-decoration-line: underline; color:gray;"> PORTAI 이용약관</a>
                     <a href="http://www.naver.com" style="font-size:13px; margin-left: 10px;text-decoration-color: gray; text-decoration-line: underline; color:gray;"> 개인정보 수집이용 동의</a>
                     <br><br>
-                    <input type="checkbox"> <label style=" vertical-align: middle">광고성 정보 수신 동의(선택)</label><br>
+                    <input type="checkbox" name="mycheck"> <label style=" vertical-align: middle">광고성 정보 수신 동의(선택)</label><br>
                     <span style="font-size:13px; color:slategrey ">* 만 14세 이상 회원만 가입 가능합니다. </span>
                     <a href="http://www.naver.com" style="font-size:13px; margin-left: 10px;text-decoration-color: gray; text-decoration-line: underline; color:gray;"> 내용보기</a><br><br>
-                    <div>
 
-                    </div>
-                    <div class="form-group ">
-                        <input type="submit" id="btn_register" value="회원가입" class="btn btn-primary btn-lg btn-block login-button ">
-                    </div>
-                    <div class="form-group ">
-                        <a href="index.html" style="text-decoration-line:none; text-align: center" class="list-group-item list-group-item-action"><i class="fa fa-home"> 홈으로</i> </a>
-                    </div>
-                </form>
+                    <script>
+                        function tot_ch() {
+                            var is_check = document.getElementById("total_check").checked;
+
+                            for (i = 0; i < 2; i++) {
+                                if (is_check) {
+                                    form_regi.mycheck[i].checked = true;
+                                } else {
+                                    form_regi.mycheck[i].checked = false;
+                                }
+                            }
+
+                        }
+                    </script>
+                    <input type="submit" id="btn_register" value="회원가입" class="btn btn-primary btn-lg btn-block login-button ">
             </div>
-
-
+            <div class="form-group ">
+                <a href="index.html" style="text-decoration-line:none; text-align: center" class="list-group-item list-group-item-action"><i class="fa fa-home"> 홈으로</i> </a>
+            </div>
+            </form>
         </div>
+
+
+    </div>
     </div>
 
     <!-- Bootstrap core JavaScript -->
@@ -118,6 +129,8 @@
         });
     </script>
 
+
+
     <!-- 모든 항목 잘 체크했는지 검사하는 스크립트-->
     <script>
         function validate() {
@@ -128,6 +141,9 @@
             var pw = document.getElementById("pw");
             var pw2 = document.getElementById("pw2");
             var name = document.getElementById("name");
+            var is_check = document.getElementById("total_chekck").checked || form_regi.mycheck[0].checked;
+
+            alert(is_check);
 
             if (email.value == "") {
                 alert("이메일을 입력해 주세요");
@@ -155,6 +171,8 @@
                 join.name.focus();
                 return false;
             }
+
+            if ()
         }
 
         function check(re, what, message) {

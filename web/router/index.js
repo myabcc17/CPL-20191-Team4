@@ -1,5 +1,6 @@
 var Member = require('../model/member.js');
 var path = '/home/ubuntu/CPL-20191-Team4/web/public/webapp/';
+
 module.exports = function(app) {
     /*WebPage*/
     app.get('/', function(req, res) {
