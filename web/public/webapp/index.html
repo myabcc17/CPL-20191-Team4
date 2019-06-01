@@ -91,7 +91,7 @@
                                 에이미스튜디오
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="temp">
                                 <form method="POST" id="logout-form">
                                     <a class="dropdown-item" href="Login.html" id="btn_login">로그인</a>
                                     <a class="dropdown-item" href="Register.html" id="btn_register">회원가입</a>
@@ -102,7 +102,7 @@
                                     var btn_login = document.getElementById("btn_login");
                                     var btn_register = document.getElementById("btn_register");
                                     var form = document.getElementById("logout-form");
-
+                                    var temp = document.getElementById("temp")
 
                                     if (id != 0) {
                                         btn_login.removeChild();
@@ -111,6 +111,7 @@
                                         var btn_logout = document.createElement("input");
                                         btn_logout.setAttribute("type", "submit");
                                         btn_logout.setAttribute("value", "로그아웃");
+                                        temp.appendChild(btn_logout);
                                     } else {
                                         btn_login.innerHTML = "로그인";
                                         btn_login.setAttribute("href", "Login.html");
