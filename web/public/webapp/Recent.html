@@ -116,15 +116,32 @@
             </nav>
 
             <div class="container-fluid">
-                <video autoplay="true" id="videoElement">
-                </video>
-                <input type="file" id="take-picture" accept="image/*">
+                <video id="videoElement" controls autoplay></video>
+                <button id="capture">Capture</button>
+                <canvas id="snapshot" width=320 height=240></canvas>
+                <script>
+                    var player = document.getElementById('videoElement');
+                    var snapshotCanvas = document.getElementById('snapshot');
+                    var captureButton = document.getElementById('capture');
 
-                <div id="app">
-                    Loading opencv.js
-                </div>
-                <canvas id="canvasOutput"></canvas>
-                <script src="../js/pose.js"></script>
+                    var handleSuccess = function (stream) {
+                        // Attach the video stream to the video element and autoplay.
+                        player.srcObject = stream;
+                    };
+
+                    captureButton.addEventListener('click', function () {
+                        var context = snapshot.getContext('2d');
+                        // Draw the video frame to the canvas.
+                        context.drawImage(player, 0, 0, snapshotCanvas.width,
+                            snapshotCanvas.height);
+                    });
+
+                    navigator.mediaDevices.getUserMedia({
+                            video: true
+                        })
+                        .then(handleSuccess);
+                </script>
+                </p>
             </div>
 
         </div>
@@ -136,6 +153,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/capture.js"></script>
 
     <!-- Menu Toggle Script -->
     <script>
@@ -159,29 +177,6 @@
                     console.log("Something went wrong!");
                 });
         }
-        var takePicture = document.querySelector("#take-picture");
-        takePicture.onchange = function (event) {
-            // 찍거나 선택한 파일에 대한 참조를 얻음
-            var files = event.target.files,
-                file;
-            if (files && files.length > 0) {
-                file = files[0];
-            }
-        };
-        // 이미지 참조
-        var showPicture = document.querySelector("#show-picture");
-
-        // window.URL 객체를 얻음
-        var URL = window.URL || window.webkitURL;
-
-        // ObjectURL 생성
-        var imgURL = URL.createObjectURL(file);
-
-        // ObjectURL을 src에 지정
-        showPicture.src = imgURL;
-
-        // 성능을 위해 다 사용한 ObjectURL을 해제
-        URL.revokeObjectURL(imgURL);
     </script>
 </body>
 
