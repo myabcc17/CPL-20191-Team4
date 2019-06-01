@@ -162,10 +162,8 @@ var addUser = function(database, email, password, name, phone, callback){
 var router = express.Router();
 
 router.route('/').get(function(req,res){
-	fs.readFile('public/webapp/index.html', function(err, data){
-        res.writeHead(200, {'Content-Type':'text/html'});
-        res.end(data);
-    })
+	res.redirect('/public/webapp/index.html');
+    res.end();
 });
 
 /* 로그인 라우팅 함수 - 데이터베이스의 정보와 비교 */
@@ -189,15 +187,12 @@ router.route('/process/login').post(function(req,res){
                     authorized : true
                 };
                 
-                fs.readFile('public/webapp/index.html', function(err, data){
-                    res.writeHead(200, {'Content-Type':'text/html'});
-                    res.end(data);
-                })
+                res.redirect('../public/webapp/index.html');
+                res.end();
+                
             } else {
-                fs.readFile('public/webapp/Login.html', function(err, data){
-                    res.writeHead(200, {'Content-Type':'text/html'});
-                    res.end(data);
-                })
+                res.redirect('../public/webapp/Login.html');
+                res.end();
             }
         });
     } else {
@@ -228,10 +223,8 @@ router.route('/process/adduser').post(function(req, res){
             if(result && result.insertedCount > 0){
                 console.dir(result);
                 
-                fs.readFile('public/webapp/Login.html', function(err, data){
-                    res.writeHead(200, {'Content-Type':'text/html'});
-                    res.end(data);
-                })
+                res.redirect('../public/webapp/Login.html');
+                res.end();
                 
             } else { // 결과 객체가 없으면 실패 응답 전송
                 res.writeHead('200', {'Content-Type':'text/html;charset=utf8}'});
@@ -258,10 +251,8 @@ router.route('/process/logout').post(function(req,res){
             if (err) {throw err;}
             
             console.log('세션을 삭제하고 로그아웃되었습니다.');
-            fs.readFile('public/webapp/Login.html', function(err, data){
-                    res.writeHead(200, {'Content-Type':'text/html'});
-                    res.end(data);
-                })
+            res.redirect('../public/webapp/Login.html');
+            res.end();
         });
     }
 });
