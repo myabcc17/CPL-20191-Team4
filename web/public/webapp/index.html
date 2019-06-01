@@ -92,6 +92,9 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <script>
+                                    
+                                </script>
                                 <a class="dropdown-item" href="Login.html" name="btn_login">로그인</a>
                                 <a class="dropdown-item" href="Register.html" name="btn_register">회원가입</a>
                             </div>
@@ -113,6 +116,15 @@
                         <div class="panel-heading clearfix">
                             <span>최근 작업 사진</span><br>
                         </div>
+                        <form method="POST" enctype="multipart/form-data" action="/process/photo">
+                            <table>
+                                <tr>
+                                    <td><label>파일</label></td>
+                                    <td><input type="file" name="photo"></td>
+                                </tr>
+                            </table>
+                            <input type="submit" value="업로드" name="submit">
+                        </form>
                         <div class="file-tab panel-body">
                             <label class="btn btn-default btn-file">
                                 <span>Browse</span>
@@ -156,7 +168,7 @@
         });
     </script>
     <script>
-        
+
     </script>
 </body>
 
