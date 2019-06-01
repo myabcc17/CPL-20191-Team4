@@ -96,24 +96,34 @@
                                     <a class="dropdown-item" href="Login.html" id="btn_login">로그인</a>
                                     <a class="dropdown-item" href="Register.html" id="btn_register">회원가입</a>
                                 </form>
-                                
+
                                 <script>
                                     var id = document.cookie.search("email");
-                                    var btn_login = document.getElementById("btn_login");
-                                    var btn_register = document.getElementById("btn_register");
                                     var form = document.getElementById("logout-form");
                                     document.write(id);
 
                                     if (id != 0) {
-                                        btn_login.remove();
-                                        btn_register.remove();
+                                        document.getElementById("btn_login").remove();
+                                        document.getElementById("btn_register").remove();
                                         var btn_logout = document.createElement("input");
                                         btn_logout.setAttribute("type", "submit");
                                         btn_logout.setAttribute("value", "로그아웃");
+                                        btn_logout.id = "btn_logout";
                                         form.append(btn_logout);
                                     } else {
+                                        document.getElementById("btn_logout").remove();
+                                        var btn_login = document.createElement("a");
+                                        btn_login.className = "dropdown-item";
+                                        btn_login.href = "Login.html";
+                                        btn_login.id = "btn_login";
                                         btn_login.innerHTML = "로그인";
-                                        btn_login.setAttribute("href", "Login.html");
+                                        var btn_register = document.getElementById("btn_register");
+                                        btn_register.className = "dropdown-item";
+                                        btn_register.href = "Register.html";
+                                        btn_register.id = "btn_register";
+                                        btn_register.innerHTML = "회원가입";
+                                        form.append(btn_login);
+                                        from.append(btn_register);
                                     }
                                 </script>
                             </div>
