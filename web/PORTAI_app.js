@@ -1,3 +1,6 @@
+/* fs 모듈 불러오기 */
+var fs = require('fs');
+
 /* Express 기본 모듈 불러오기 */
 var express = require('express'),
     http = require('http'),
@@ -159,7 +162,10 @@ var addUser = function(database, email, password, name, phone, callback){
 var router = express.Router();
 
 router.route('/').get(function(req,res){
-	res.redirect('/public/webapp/index.html');
+	fs.readFile('public/webapp/index.html', function(err, data){
+        res.writeHead(200, {'Content-Type':'text/html'});
+        res.end(data);
+    })
 });
 
 /* 로그인 라우팅 함수 - 데이터베이스의 정보와 비교 */
@@ -183,11 +189,15 @@ router.route('/process/login').post(function(req,res){
                     authorized : true
                 };
                 
-                res.redirect('public/webapp/index.html');
-                res.end();
+                fs.readFile('public/webapp/index.html', function(err, data){
+                    res.writeHead(200, {'Content-Type':'text/html'});
+                    res.end(data);
+                })
             } else {
-                res.redirect('public/webapp/Login.html');
-                res.end();
+                fs.readFile('public/webapp/Login.html', function(err, data){
+                    res.writeHead(200, {'Content-Type':'text/html'});
+                    res.end(data);
+                })
             }
         });
     } else {
@@ -218,8 +228,11 @@ router.route('/process/adduser').post(function(req, res){
             if(result && result.insertedCount > 0){
                 console.dir(result);
                 
-                res.redirect('/public/webapp/Login.html');
-                res.end();
+                fs.readFile('public/webapp/Login.html', function(err, data){
+                    res.writeHead(200, {'Content-Type':'text/html'});
+                    res.end(data);
+                })
+                
             } else { // 결과 객체가 없으면 실패 응답 전송
                 res.writeHead('200', {'Content-Type':'text/html;charset=utf8}'});
                 res.write('<h2>사용자 추가 실패</h2>');
@@ -245,8 +258,10 @@ router.route('/process/logout').post(function(req,res){
             if (err) {throw err;}
             
             console.log('세션을 삭제하고 로그아웃되었습니다.');
-            res.redirect('/public/webapp/index.html');
-		res.end();
+            fs.readFile('public/webapp/Login.html', function(err, data){
+                    res.writeHead(200, {'Content-Type':'text/html'});
+                    res.end(data);
+                })
         });
     }
 });
