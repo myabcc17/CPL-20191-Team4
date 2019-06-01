@@ -255,7 +255,7 @@ router.route('/process/adduser').post(function(req, res){
             if(err) {throw err;}
             
             // 회원 가입 후 해당 User의 디렉토리 생성
-            mkdirp('/uploads/' + paramEmail, function(err){
+            mkdirp('./uploads/' + paramEmail, function(err){
                 if(err) {throw err;}
             });
             
