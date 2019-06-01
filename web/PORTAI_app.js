@@ -219,7 +219,7 @@ router.route('/process/adduser').post(function(req, res){
         addUser(database, paramEmail, paramPassword, paramName, paramPhone, function(err,result){
             if(err) {throw err;}
 
-            console.log(result.insertedCount);
+            console.dir(result);
             
             // 결과 객체 확인하여 추가된 데이터 있으면 성공 응답 전송
             if(result && result.insertedCount > 0){
