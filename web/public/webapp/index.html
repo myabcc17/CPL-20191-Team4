@@ -100,12 +100,12 @@
                                 <script>
                                     var id = parseInt(document.cookie.search("email"));
                                     var form = document.getElementById("logout-form");
-                                    document.write(id);
 
                                     if (id > 0) {
                                         document.getElementById("btn_login").remove();
                                         document.getElementById("btn_register").remove();
                                         var btn_logout = document.createElement("input");
+                                        btn_logout.className = "dropdown-item";
                                         btn_logout.setAttribute("type", "submit");
                                         btn_logout.setAttribute("value", "로그아웃");
                                         btn_logout.id = "btn_logout";
