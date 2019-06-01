@@ -48,7 +48,7 @@ module.exports = function(app) {
         });
     });
     // GET MEMBER BY NAME
-    app.get('/api/members/name/:name', function(req, res) {
+    app.get('/process/members/name/:name', function(req, res) {
         Member.findOne({ _name: req.params.name }, function(err, book) {
             if (err)
                 return res.status(500).json({ error: err });
@@ -59,7 +59,7 @@ module.exports = function(app) {
     });
 
     // CREATE MEMBER
-    app.post('/api/members', function(req, res) {
+    app.post('/process/members', function(req, res) {
         var member = new Member();
         member.email = req.body.email;
         member.password = req.body.password;
@@ -78,8 +78,8 @@ module.exports = function(app) {
         });
     });
 
-    // UPDATE THE MEBER
-    app.put('/api/members/:email', function(req, res) {
+    // UPDATE THE MEMBER
+    app.put('/process/members/:email', function(req, res) {
         Member.findByEmail(req.params.email, function(err, member) {
             if (err)
                 return res.status(500).json({ error: 'database failure' });
@@ -98,8 +98,8 @@ module.exports = function(app) {
         });
     });
 
-    // DELETE BOOK
-    app.delete('/api/members/:email', function(req, res) {
+    // DELETE THE MEMBER
+    app.delete('/process/members/:email', function(req, res) {
         res.end();
     });
 }
