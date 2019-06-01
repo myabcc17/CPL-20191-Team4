@@ -42,6 +42,7 @@ app.use(expressSession({
 
 /* 몽고디비 모듈 사용 */
 var mongoose = require('mongoose');
+mongoose.set('useCreateIndex', true);
 
 /* 데이터베이스 객체를 위한 변수 선언 */
 var database;
@@ -50,13 +51,13 @@ var database;
 var MemberSchema;
 
 /* 데이터베이스 모델 객체를 위한 변수 선언 */
-var UserModel;
+var MemberModel;
 
 /* 데이터베이스에 연결 */
 function connectDB(){
     // 데이터베이스 연결 정보
     var databaseUrl = 'mongodb://localhost/PORTAI';
-    
+
     // 데이터베이스 연결
     console.log('데이터베이스 연결을 시도합니다.');
     mongoose.Promise = global.Promise;
@@ -75,19 +76,19 @@ function connectDB(){
             password: {type: String, required: true},
             // name은 hashed 인덱싱 해놓는다.
             name: {type: String, index: 'hashed'},
-            phone: : String,
+            phone: String,
             // Date type으로 생성 시각과 수정 시각을 정하고 default 값으로 현재 시각을 넣어둔다.
             created_at: {type: Date, index : {unique : false}, 'default' : Date.now},
             updated_at: {type: Date, index : {unique : false}, 'default' : Date.now}
         });
         
-        UserSchema.static('findByEmail', function(email,callback){
+        MemberSchema.static('findByEmail', function(email,callback){
             return this.find({email : email}, callback);
         });
         
         console.log('MemberSchema 정의함.');
         
-        // UserModel 모델 정의
+        // MemberModel 모델 정의
         MemberModel = mongoose.model('member', MemberSchema);
         console.log('MemberModel 정의함.');
     });
@@ -104,17 +105,17 @@ var authUser = function(database, email, password, callback){
     console.log('authUser 호출됨 : ' + email + ', ' + password);
     
     // 1. 이메일을 사용해 검색
-    // 모델 객체의 findById() 메소드를 호출할 때는 id 값과 콜백 함수를 전달한다.
+    // 모델 객체의 findByEmail() 메소드를 호출할 때는 email 값과 콜백 함수를 전달한다.
     // 콜백 함수에서 결과 데이터를 배열로 받으면 그 배열 객체에 데이터가 있는지 확인한다.
     // 데이터가 있는 경우에는 첫 번째 배열 요소의 _doc 속성을 참조한다.
     // _doc 속성은 각 문서 객체의 정보를 담고 있어 그 안에 있는 password 속성 값을 확인할 수 있다.
-    UserModel.findByEmail(id, function(err,results){
+    MemberModel.findByEmail(email, function(err,results){
         if(err){
             callback(err,null);
             return;
         }
         
-        console.log('이메일 [%s]로 사용자 검색 결과', id);
+        console.log('이메일 [%s]로 사용자 검색 결과', email);
         console.dir(results);
         
         if(results.length>0){
@@ -136,11 +137,11 @@ var authUser = function(database, email, password, callback){
 }
 
 /* 사용자를 등록하는 함수 */
-var addUser = function(database, id, password, name, phone, callback){
+var addUser = function(database, email, password, name, phone, callback){
     console.log('addUser 호출됨.');
     
-    // UserModel의 인스턴스 생성
-    var member = new MemberModel({'id' : id, 'password' : password, 'name' : name, 'phone' : phone});
+    // MemberModel의 인스턴스 생성
+    var member = new MemberModel({'email' : email, 'password' : password, 'name' : name, 'phone' : phone});
     
     // save()로 저장
     member.save(function(err){
@@ -149,13 +150,17 @@ var addUser = function(database, id, password, name, phone, callback){
             return;
         }
         console.log('사용자 데이터 추가함.');
-        callback(null, user);
+        callback(null, member);
         
     });
 };
 
 /* 라우터 객체 참조 */
 var router = express.Router();
+
+router.route('/').get(function(req,res){
+	res.redirect('/public/webapp/index.html');
+});
 
 /* 로그인 라우팅 함수 - 데이터베이스의 정보와 비교 */
 router.route('/process/login').post(function(req,res){
@@ -249,6 +254,7 @@ router.route('/process/logout').post(function(req,res){
             
             console.log('세션을 삭제하고 로그아웃되었습니다.');
             res.redirect('/public/webapp/index.html');
+		res.end();
         });
     }
 });
@@ -259,7 +265,7 @@ app.use('/',router);
 /* 404 오류 페이지 처리 */
 var errorHandler = expressErrorHandler({
     static:{
-        '404':'./web/public/webapp/404.html'
+        '404':'./public/webapp/404.html'
     }
 });
 
