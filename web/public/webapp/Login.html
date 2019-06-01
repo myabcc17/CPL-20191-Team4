@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap Login Form</title>
+    <title>Login</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         body {
@@ -54,7 +54,7 @@
 <body>
     <h2 class="text-center" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">PORTAI</h2>
     <div class="bslf">
-        <form action="/api/members/:email" method="post">
+        <form action="/process/login" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" name="email" placeholder="이메일" required="required">
             </div>
@@ -74,7 +74,6 @@
             </div>
         </form>
     </div>
-
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js "></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js "></script>
