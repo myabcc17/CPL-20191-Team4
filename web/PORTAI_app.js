@@ -282,16 +282,12 @@ router.route('/process/photo').post(function(req,res){
     try {
         var files = req.files;
         
-        console.dir('#===== 업로드된 첫번째 파일 정보 =====#');
-        console.dir('req.files[0]');
-        console.dir('#=====#');
-        
         var origianlname = '',
             filename = '',
             mimetype = '',
             size = 0;
         
-        console.log(Array.isArray(files));
+        console.dir(files);
         
         // 배열에 들어가 있는 경우(설정에서 1개의 파일도 배열에 넣게 했음)
         if(Array.isArray(files)){
