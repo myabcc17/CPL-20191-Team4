@@ -92,13 +92,21 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="Login.html" id="btn_login">로그인</a>
+                                <a class="dropdown-item" href="Register.html" id="btn_register">회원가입</a>
                                 <script>
-                                    var id = document.cookie.search("email");
-                                    document.write(id);
-
-                                </script>
-                                <a class="dropdown-item" href="Login.html" name="btn_login">로그인</a>
-                                <a class="dropdown-item" href="Register.html" name="btn_register">회원가입</a>
+                                        var id = document.cookie.search("email");
+                                        document.write(id);
+                                        var btn_login = document.getElementById("btn_login");
+                                        var btn_register = document.getElementById("btn_register");
+                                        if(id != 0) {
+                                            btn_login.innerHTML = "로그아웃";
+                                            btn_login.setAttribute("href", "index.html");
+                                        } else {
+                                            btn_login.innerHTML = "로그인";
+                                            btn_login.setAttribute("href", "Login.html");
+                                        }
+                                    </script>
                             </div>
                         </li>
                     </ul>
