@@ -276,18 +276,16 @@ router.route('/process/logout').post(function(req,res){
 });
 
 /* 사진 업로드 라우팅 함수 - 사진 업로드 */
-router.route('/process/photo').post(function(req,res){
+router.route('/process/photo').post(upload.array('photo',1), function(req,res){
     console.log('/process/photo 호출됨.');
     
     try {
-        var file = req.file;
+        var files = req.files;
         
         var origianlname = '',
             filename = '',
             mimetype = '',
             size = 0;
-        
-        console.dir(file);
         
         // 배열에 들어가 있는 경우(설정에서 1개의 파일도 배열에 넣게 했음)
         if(Array.isArray(files)){
