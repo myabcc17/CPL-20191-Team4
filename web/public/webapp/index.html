@@ -110,7 +110,10 @@
                                         btn_logout.setAttribute("value", "로그아웃");
                                         btn_logout.id = "btn_logout";
                                         form.append(btn_logout);
-                                        createCookie(member, "", -1);
+                                        var deleteCookie = function (name) {
+                                            document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+                                        }
+                                        deleteCookie("member");
                                     } else {
                                         document.getElementById("btn_logout").remove();
                                         var btn_login = document.createElement("a");
