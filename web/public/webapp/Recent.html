@@ -138,7 +138,7 @@
                         const data = canvas.toDataURL('image/png');
                         return data;
                     }
-                    const WS_URL = 'ws://localhost:3001';
+                    const WS_URL = 'localhost:8080';
                     const FPS = 3;
                     const ws = new WebSocket(WS_URL);
                     ws.onopen = () => {
