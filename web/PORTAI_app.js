@@ -215,11 +215,19 @@ router.route('/process/login').post(function(req,res){
                 console.dir(docs);
                 var username = docs[0].name;
                 
+                
+                /* 로그인한 유저 세션 생성 */
                 req.session.user = {
                     email : docs[0].email,
                     name : docs[0].name,
                     authorized : true
                 };
+                
+                /* 로그인한 유저의 웹 브라우저에 cookie 보내기 */
+                res.cookie('member',{
+                    email : docs[0].email,
+                    authorized : true
+                });
                 
                 CurrentSession = docs[0].email;
                 res.redirect('../public/webapp/index.html');
