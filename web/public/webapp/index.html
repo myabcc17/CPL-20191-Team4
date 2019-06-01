@@ -101,6 +101,16 @@
                                     var id = parseInt(document.cookie.search("email"));
                                     var form = document.getElementById("logout-form");
                                     document.write(id);
+
+                                    function setCookie(cName, cValue. cDay) {
+                                        var expire = new Date();
+                                        expire.setDate(expire.getDate() + cDay);
+                                        cookies = cName + '=' + escape(cValue) +
+                                        '; path=/ '; // 한글 깨짐을 막기위해 escape(cValue)를 합니다.
+                                        if (typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() +
+                                            ';';
+                                        document.cookie = cookies;
+                                    }
                                     if (id > 0) {
                                         document.getElementById("btn_login").remove();
                                         document.getElementById("btn_register").remove();
@@ -109,6 +119,7 @@
                                         btn_logout.setAttribute("type", "submit");
                                         btn_logout.setAttribute("value", "로그아웃");
                                         btn_logout.id = "btn_logout";
+                                        btn_logout.onclick = "setCookie('member', '', -1)";
                                         form.append(btn_logout);
                                     } else {
                                         document.getElementById("btn_logout").remove();
