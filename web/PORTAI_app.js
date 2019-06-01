@@ -183,17 +183,10 @@ router.route('/process/login').post(function(req,res){
                     authorized : true
                 };
                 
-                res.writeHead('200',{'Content-Type':'text/html;charset=utf8'});
-                res.write('<h1>로그인 성공</h1>');
-                res.write('<div><p>사용자 아이디 : ' + paramEmail + '</p></div>');
-                res.write('<div><p>사용자 이름 : ' + username + '</p></div>');
-                res.write('<br><br><a href="../../public/login.html">다시 로그인하기</a>');
+                res.redirect('public/webapp/index.html');
                 res.end();
             } else {
-                res.writeHead('200',{'Content-Type':'text/html;charset=utf8'});
-                res.write('<h1>로그인 실패</h1>');
-                res.write('<div><p>아이디와 비밀번호를 다시 확인하십시오.</p></div>');
-                res.write('<br><br><a href="../../public/login.html">다시 로그인하기</a>');
+                res.redirect('public/webapp/Login.html');
                 res.end();
             }
         });
@@ -225,8 +218,7 @@ router.route('/process/adduser').post(function(req, res){
             if(result && result.insertedCount > 0){
                 console.dir(result);
                 
-                res.writeHead('200', {'Content-Type':'text/html;charset=utf8}'});
-                res.write('<h2>사용자 추가 성공</h2>');
+                res.redirect('/public/webapp/Login.html');
                 res.end();
             } else { // 결과 객체가 없으면 실패 응답 전송
                 res.writeHead('200', {'Content-Type':'text/html;charset=utf8}'});
