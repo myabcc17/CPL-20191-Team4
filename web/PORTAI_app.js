@@ -64,14 +64,17 @@ var MemberSchema;
 /* 데이터베이스 모델 객체를 위한 변수 선언 */
 var MemberModel;
 
+/* 현재 세션에 있는 ID */
+var CurrentSession = null;
+
 /* multer 미들웨어 사용 : 미들웨어 사용 순서 중요 body-parser -> multer -> router */
 /* 파일 제한 : 100개, 1G */
 var storage = multer.diskStorage({
     destination:function(req, file, callback){
-        callback(null, 'uploads');
+        callback(null, 'uploads/' + CurrentSession);
     },
     filename: function(req, file, callback){
-        callback(null, file.originalname);
+        callback(null, Date.now() + '_' + file.originalname);
     }
 });
 
@@ -119,7 +122,8 @@ function connectDB(){
         console.log('MemberSchema 정의함.');
         
         // MemberModel 모델 정의
-        MemberModel = mongoose.model('member', MemberSchema);
+        MemberModel = mongoose.model('member', MemberSchema, 'members');
+        
         console.log('MemberModel 정의함.');
     });
     
@@ -214,6 +218,7 @@ router.route('/process/login').post(function(req,res){
                     authorized : true
                 };
                 
+                CurrentSession = docs[0].email;
                 res.redirect('../public/webapp/index.html');
                 res.end();
                 
@@ -268,6 +273,7 @@ router.route('/process/logout').post(function(req,res){
         req.session.destroy(function(err){
             if (err) {throw err;}
             
+            CurrentSession = null;
             console.log('세션을 삭제하고 로그아웃되었습니다.');
             res.redirect('../public/webapp/Login.html');
             res.end();
