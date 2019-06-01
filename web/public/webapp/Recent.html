@@ -116,24 +116,14 @@
             </nav>
 
             <div class="container-fluid">
-                <video autoplay="true" id="videoElement">
+                <div>
+                    <h1>Stream Webcam</h1>
+                    <video autoplay id="sourcevid"></video>
+                    <canvas id="output"></canvas>
+                    <div id="log"></div>
+                </div>
 
-                </video>
-                <script>
-                    var video = document.querySelector("#videoElement");
-
-                    if (navigator.mediaDevices.getUserMedia) {
-                        navigator.mediaDevices.getUserMedia({
-                                video: true
-                            })
-                            .then(function (stream) {
-                                video.srcObject = stream;
-                            })
-                            .catch(function (err0r) {
-                                console.log("Something went wrong!");
-                            });
-                    }
-                </script>
+                <script type="text/javascript" src="js/transmissor.js"></script>
             </div>
         </div>
         <!-- /#page-content-wrapper -->

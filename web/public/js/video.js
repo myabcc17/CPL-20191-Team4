@@ -1,51 +1,80 @@
-(function() {
-  
-    var canvas = document.getElementById('canvas'),
-    context = canvas.getContext('2d'),
-    video = document.getElementById('video'),
-    vendorUrl = window.URL || window.webkitURL;
+/*
+ * Verifry if browser has getUserMedia
+ */
+function hasGetUserMedia() {
+    return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia || navigator.msGetUserMedia);
+}
+
+var video = document.getElementById('sourcevid');
+
+navigator.getMedia = ( navigator.getUserMedia ||
+                       navigator.webkitGetUserMedia ||
+                       navigator.mozGetUserMedia ||
+                       navigator.msGetUserMedia);
+
+if (hasGetUserMedia()) {
+    navigator.getMedia(
+        {video: true, audio: false}, 
+        function (localMediaStream) {
+            video.src = window.URL.createObjectURL(localMediaStream);
+        }, 
+        function (e) {
+            console.log(e);
+        }
+    );
     
-    navigator.getMedia =  navigator.getUserMedia ||
-    navigator.webkitGetUserMedia ||
-    navigator.mozGetuserMedia ||
-    navigator.msGetUserMedia;
+    var back = document.createElement('canvas');
+    var backcontext = back.getContext('2d');
     
-    navigator.getMedia({
-      video: true,
-      audio: false
-    }, function(stream) {
-      video.src = vendorUrl.createObjectURL(stream);
-      video.play();
-    }, function(error) {
-      // an error occurred
-    } );
+    var ws;
     
-    video.addEventListener('play', function() {
-      draw( this, context, 1024, 768 );
-    }, false );
-    
-    function draw( video, context, width, height ) {
-      var image, data, i, r, g, b, brightness;
-      
-      context.drawImage( video, 0, 0, width, height );
-      
-      image = context.getImageData( 0, 0, width, height );
-      data = image.data;
-      
-      for( i = 0 ; i < data.length ; i += 4 ) {
-        r = data[i];
-        g = data[i + 1];
-        b = data[i + 2];
-        brightness = ( r + g + b ) / 3;
-        
-        data[i] = data[i + 1] = data[i + 2] = brightness;
-      }
-      
-      image.data = data;
-      
-      context.putImageData( image, 0, 0 );
-      
-      setTimeout( draw, 10, video, context, width, height );
+    if ('WebSocket' in window) {
+        connect('ws://127.0.0.1:8080/');
+    } else {
+        console.log('web sockets not suported');
     }
     
-  } )();
+    function connect(host) {
+        ws = new WebSocket(host);
+        ws.onopen = function () {
+            console.log('connected');
+        }
+        
+        ws.onclose = function () {
+            console.log('closed');
+        }
+        
+        ws.onerror = function(evt) {
+            console.log('<span style="color: red;">ERROR:</span> ' + evt.data);
+        }
+    }
+    
+    function send(msg) {
+        if (ws != null) {
+            if (ws.readyState === 1)
+                ws.send(msg);
+        } else {
+            console.log('not ready yet');
+        }
+    }
+    
+    cw = video.clientWidth;
+    ch = video.clientHeight;
+    back.width = cw;
+    back.height = ch;
+    draw(video, backcontext, cw, ch);
+    
+    function draw(v, bc, w, h) {
+        bc.drawImage(v, 0, 0, w, h);
+        
+        var stringData = back.toDataURL();
+        
+        send(stringData);
+        
+        setTimeout(function() { draw(v, bc, w, h) });
+    }
+    
+} else {
+    alert('getUserMedia() is not supported in your browser!');
+}
