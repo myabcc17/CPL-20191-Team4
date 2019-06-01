@@ -118,8 +118,15 @@
             <div class="container-fluid">
                 <video autoplay="true" id="videoElement">
                 </video>
+                <input type="file" id="take-picture" accept="image/*">
 
+                <div id="app">
+                    Loading opencv.js
+                </div>
+                <canvas id="canvasOutput"></canvas>
+                <script src="../js/pose.js"></script>
             </div>
+
         </div>
         <!-- /#page-content-wrapper -->
 
@@ -152,6 +159,29 @@
                     console.log("Something went wrong!");
                 });
         }
+        var takePicture = document.querySelector("#take-picture");
+        takePicture.onchange = function (event) {
+            // 찍거나 선택한 파일에 대한 참조를 얻음
+            var files = event.target.files,
+                file;
+            if (files && files.length > 0) {
+                file = files[0];
+            }
+        };
+        // 이미지 참조
+        var showPicture = document.querySelector("#show-picture");
+
+        // window.URL 객체를 얻음
+        var URL = window.URL || window.webkitURL;
+
+        // ObjectURL 생성
+        var imgURL = URL.createObjectURL(file);
+
+        // ObjectURL을 src에 지정
+        showPicture.src = imgURL;
+
+        // 성능을 위해 다 사용한 ObjectURL을 해제
+        URL.revokeObjectURL(imgURL);
     </script>
 </body>
 
