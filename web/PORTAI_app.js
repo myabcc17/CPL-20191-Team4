@@ -218,22 +218,10 @@ router.route('/process/adduser').post(function(req, res){
     if(database) {
         addUser(database, paramEmail, paramPassword, paramName, paramPhone, function(err,result){
             if(err) {throw err;}
-
-            console.dir(result);
             
-            // 결과 객체 확인하여 추가된 데이터 있으면 성공 응답 전송
-            if(result && result.insertedCount > 0){
-                console.log('정상처리');
-                console.dir(result);
-                
-                res.redirect('../public/webapp/Login.html');
-                res.end();
-                
-            } else { // 결과 객체가 없으면 실패 응답 전송
-                res.writeHead('200', {'Content-Type':'text/html;charset=utf8}'});
-                res.write('<h2>사용자 추가 실패</h2>');
-                res.end();
-            }
+            // 회원 가입 후 LoginPage
+            res.redirect('../public/webapp/Login.html');
+            res.end();
         });
     } else { // 데이터베이스 객체가 초기화되지 않은 경우 실패 응답 전송
         res.writeHead('200', {'Content-Type':'text/html;charset=utf8}'});
