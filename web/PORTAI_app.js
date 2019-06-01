@@ -274,7 +274,7 @@ var sys = require('util'),
     ws = require('ws').Server;
     
 var server = new ws({port: 8080});
-
+console.log('여기오류');
 clients = [];
 
 server.on("connection", function(websocket) {
