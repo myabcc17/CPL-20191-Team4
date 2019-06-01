@@ -1,6 +1,3 @@
-/* fs 모듈 불러오기 */
-var fs = require('fs');
-
 /* Express 기본 모듈 불러오기 */
 var express = require('express'),
     http = require('http'),
@@ -18,6 +15,13 @@ var expressErrorHandler = require('express-error-handler');
 /* 세션 미들웨어 불러오기 */
 var expressSession = require('express-session');
 
+/* 파일 업로드용 미들웨어 */
+var fs = require('fs');
+var multer = require('multer');
+
+/* 클라이언트에서 ajax로 요청했을 때 CORS(다중 서버 접속) 지원 */
+var cors = require('cors');
+
 /* Express 객체 생성 */
 var app = express();
 
@@ -32,6 +36,7 @@ app.use(bodyParser.json());
 
 /* public 폴더를 static으로 오픈 */
 app.use('/public',static(path.join(__dirname,'/public')));
+app.use('/uploads',static(path.join(__dirname,'/public')));
 
 /* cookie-parser 설정 */
 app.use(cookieParser());
@@ -42,6 +47,9 @@ app.use(expressSession({
     resave:true,
     saveUninitialized:true
 }));
+
+/* 클라이언트에서 ajax로 요청했을 때 CORS(다중 서버 접속) 지원 */
+app.use(cors());
 
 /* 몽고디비 모듈 사용 */
 var mongoose = require('mongoose');
@@ -55,6 +63,25 @@ var MemberSchema;
 
 /* 데이터베이스 모델 객체를 위한 변수 선언 */
 var MemberModel;
+
+/* multer 미들웨어 사용 : 미들웨어 사용 순서 중요 body-parser -> multer -> router */
+/* 파일 제한 : 100개, 1G */
+var storage = multer.diskStorage({
+    destination:function(req, file, callback){
+        callback(null, 'uploads');
+    },
+    filename: function(req, file, callback){
+        callback(null, file.originalname + Date.now())
+    }
+});
+
+var upload = multer({
+    storage: storage,
+    limits:{
+        files: 100,
+        fileSize: 1024 * 1024 * 1024
+    }
+});
 
 /* 데이터베이스에 연결 */
 function connectDB(){
@@ -245,6 +272,31 @@ router.route('/process/logout').post(function(req,res){
             res.redirect('../public/webapp/Login.html');
             res.end();
         });
+    }
+});
+
+/* 사진 업로드 라우팅 함수 - 사진 업로드 */
+router.route('/process/photo').post(function(req,res){
+    console.log('/process/photo 호출됨.');
+    
+    try {
+        var files = req.files;
+        var origianlname = '',
+            filename = '',
+            mimetype = '',
+            size = 0;
+        
+        // 배열에 들어가 있는 경우(설정에서 1개의 파일도 배열에 넣게 했음)
+        if(Array.isArray(files)){
+            for(var index = 0; index < files.length; index++){
+                originalname = files[index].originalname;
+                filename = files[index].filename;
+                mimetype = files[index].mimetype;
+                size = files[index].size;
+            }
+        }
+    } catch(err){
+        console.dir(err.stack);
     }
 });
 
