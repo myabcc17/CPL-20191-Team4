@@ -278,11 +278,14 @@ router.route('/process/logout').post(function(req,res){
 /* 사진 업로드 라우팅 함수 - 사진 업로드 */
 router.route('/process/photo').post(function(req,res){
     console.log('/process/photo 호출됨.');
-    var files = req.files;
-    
     
     try {
         var files = req.files;
+        
+        console.dir('#===== 업로드된 첫번째 파일 정보 =====#');
+        console.dir('req.files[0]');
+        console.dir('#=====#');
+        
         var origianlname = '',
             filename = '',
             mimetype = '',
