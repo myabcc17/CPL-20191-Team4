@@ -105,13 +105,13 @@
                                     var temp = document.getElementById("temp")
 
                                     if (id != 0) {
-                                        btn_login.removeChild();
+                                        btn_login.innerHTML = "테스트";
                                         btn_login.setAttribute("href", "index.html");
-                                        btn_register.removeChild();
+                                        btn_register.remove();
                                         var btn_logout = document.createElement("input");
                                         btn_logout.setAttribute("type", "submit");
                                         btn_logout.setAttribute("value", "로그아웃");
-                                        temp.appendChild(btn_logout);
+                                        temp.append(btn_logout);
                                     } else {
                                         btn_login.innerHTML = "로그인";
                                         btn_login.setAttribute("href", "Login.html");
