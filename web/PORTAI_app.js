@@ -291,6 +291,8 @@ router.route('/process/photo').post(function(req,res){
             mimetype = '',
             size = 0;
         
+        console.log(Array.isArray(files));
+        
         // 배열에 들어가 있는 경우(설정에서 1개의 파일도 배열에 넣게 했음)
         if(Array.isArray(files)){
             for(var index = 0; index < files.length; index++){
