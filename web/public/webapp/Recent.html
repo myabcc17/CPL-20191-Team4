@@ -118,22 +118,7 @@
             <div class="container-fluid">
                 <video autoplay="true" id="videoElement">
                 </video>
-                <script>
-                    var video = document.querySelector("#videoElement");
 
-                    if (navigator.mediaDevices.getUserMedia) {
-                        navigator.mediaDevices.getUserMedia({
-                                video: true
-                            })
-                            .then(function (stream) {
-                                video.srcObject = stream;
-                                console.log("WebCam Success");
-                            })
-                            .catch(function (err0r) {
-                                console.log("Something went wrong!");
-                            });
-                    }
-                </script>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -152,7 +137,22 @@
             $("#wrapper").toggleClass("toggled");
         });
     </script>
+    <script>
+        var video = document.querySelector("#videoElement");
 
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({
+                    video: true
+                })
+                .then(function (stream) {
+                    video.srcObject = stream;
+                    console.log("WebCam Success");
+                })
+                .catch(function (err0r) {
+                    console.log("Something went wrong!");
+                });
+        }
+    </script>
 </body>
 
 </html>
