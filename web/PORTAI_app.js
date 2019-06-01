@@ -22,6 +22,9 @@ var multer = require('multer');
 /* 클라이언트에서 ajax로 요청했을 때 CORS(다중 서버 접속) 지원 */
 var cors = require('cors');
 
+/* 디렉토리 생성 모듈 불러오기 */
+var mkdirp = require('mkdirp');
+
 /* Express 객체 생성 */
 var app = express();
 
@@ -250,6 +253,11 @@ router.route('/process/adduser').post(function(req, res){
     if(database) {
         addUser(database, paramEmail, paramPassword, paramName, paramPhone, function(err,result){
             if(err) {throw err;}
+            
+            // 회원 가입 후 해당 User의 디렉토리 생성
+            mkdirp('/uploads/' + paramEmail, function(err){
+                if(err) {throw err;}
+            });
             
             // 회원 가입 후 LoginPage
             res.redirect('../public/webapp/Login.html');
