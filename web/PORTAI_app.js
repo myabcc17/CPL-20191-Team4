@@ -295,6 +295,7 @@ router.route('/process/logout').post(function(req,res){
             res.end();
         });
     }
+
 });
 
 /* 사진 업로드 라우팅 함수 - 사진 업로드 */
