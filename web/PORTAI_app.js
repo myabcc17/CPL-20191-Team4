@@ -326,7 +326,7 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
             console.log(filelist);
 
             var galary = document.getElementById("test");
-            console.log(galary.src);
+            console.log(galary.getAttribute("src"));
         })
         //var galary = document.getElementById("galary");
 
