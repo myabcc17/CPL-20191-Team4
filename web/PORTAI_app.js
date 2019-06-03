@@ -304,7 +304,7 @@ router.route('/process/logout').post(function(req, res) {
 /* 사진 업로드 라우팅 함수 - 사진 업로드 */
 router.route('/process/photo').post(upload.array('photo', 1), function(req, res) {
     console.log('/process/photo 호출됨.');
-    res.redirect('../public/webapp/index.html');
+
 
     /*
     fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
@@ -315,11 +315,12 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
 
     fs.readFile("./uploads/" + CurrentSession + "/1.jpg", function(err, data) {
         if (err) throw err; // Fail if the file can't be read.
-        //res.writeHead(200, { 'Content-Type': 'image/jpeg' });
+        res.writeHead(200, { 'Content-Type': 'image/jpeg' });
         res.write(data);
         res.end(data); // Send the file data to the browser.
     })
-    console.log('Server running at http://localhost:8080/');
+
+    res.redirect('../public/webapp/index.html');
     res.end();
 });
 
