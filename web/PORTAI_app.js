@@ -311,12 +311,13 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
     fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
             console.log(filelist);
 
-            var galary = document.getElementById("galary");
+            //var galary = document.getElementById("galary");
             for (var i = 0; i < filelist.length; i++) {
                 var temp = document.createElement("img");
                 temp.src = "./uploads/" + CurrentSession + "/" + filelist[i];
                 temp.width = "100px";
-                galary.append(temp);
+
+                res.send(temp);
             }
         })
         //var galary = document.getElementById("galary");
