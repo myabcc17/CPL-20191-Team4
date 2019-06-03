@@ -307,8 +307,11 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
     res.redirect('../public/webapp/index.html');
 
     fs.readdir("./uploads/leeminjung99@nate.com/", function(error, filelist) {
-        console.log(filelist);
-    })
+            console.log(filelist);
+        })
+        //var galary = document.getElementById("galary");
+    console.log(filelist[1]);
+    console.log(filelist.length);
     res.end();
 });
 
