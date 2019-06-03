@@ -313,14 +313,15 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
     })
 */
 
-    fs.readFile("./uploads/" + CurrentSession + "/1.jpg", function(err, data) {
+    fs.readFile("./uploads/" + CurrentSession + "/2.png", function(err, data) {
         if (err) throw err; // Fail if the file can't be read.
-        res.writeHead(200, { 'Content-Type': 'image/jpeg' });
+        res.writeHead(200, { "Content-Type": "image/png" });
         console(data);
         res.write(data);
+        res.end();
     })
 
-    res.redirect('../public/webapp/index.html');
+    //res.redirect('../public/webapp/index.html');
     //res.end();
 });
 
