@@ -307,23 +307,27 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
 
 
     /*
-    fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
-        console.log(filelist);
+        fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
+            console.log(filelist);
 
-    })
-*/
+        })
+    */
 
     fs.readFile("./uploads/" + CurrentSession + "/1.jpg", function(err, data) {
         if (err) throw err; // Fail if the file can't be read.
         //res.writeHead(200, { 'Content-Type': 'image/jpeg' });
-        res.write(data);
-    })
-
+        res.write(data, function(err) {
+            var netSocket = require('net').Socket();
+            netSocket.connect(8080);
+            netSocket.write(data, function(err) {
+                netSocket.end();
+            });
+        })
+        netSocket.end();
+    });
     res.redirect('../public/webapp/index.html');
     res.end();
-});
-
-
+})
 
 /* 라우터 객체 등록 */
 app.use('/', router);
