@@ -313,10 +313,6 @@ router.route('/process/logout').post(function(req, res) {
 /* 사진 업로드 라우팅 함수 - 사진 업로드 */
 router.route('/process/photo').post(upload.array('photo', 1), function(req, res) {
     console.log('/process/photo 호출됨.');
-
-
-
-
     res.redirect('../public/webapp/index.html');
     res.end();
 });
