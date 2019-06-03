@@ -185,8 +185,9 @@
             var email = document.cookie.slice(startidx + 14, endidx - 9);
             var atidx = email.search("%40");
             var id = email.slice(0, atidx);
+            var site = email.slice(atidx + 2, email.length);
             var newphoto = document.createElement("img");
-            alert(email + id);
+            alert(id + site);
         }
     </script>
 </body>
