@@ -312,8 +312,6 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
 
     })
 */
-    var http = require('http'),
-        fs = require('fs');
 
     fs.readFile("./uploads/" + CurrentSession + "/1.jpg", function(err, data) {
         if (err) throw err; // Fail if the file can't be read.
@@ -321,7 +319,7 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
             res.writeHead(200, { 'Content-Type': 'image/jpeg' });
             res.write(data);
             res.end(data); // Send the file data to the browser.
-        }).listen(8080);
+        })
         console.log('Server running at http://localhost:8080/');
     });
     res.end();
