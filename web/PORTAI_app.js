@@ -320,9 +320,9 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
         res.end(data); // Send the file data to the browser.
     })
     console.log('Server running at http://localhost:8080/');
+    res.end();
 });
-res.end();
-});
+
 
 
 /* 라우터 객체 등록 */
