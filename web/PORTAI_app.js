@@ -317,10 +317,9 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
         if (err) throw err; // Fail if the file can't be read.
         //res.writeHead(200, { 'Content-Type': 'image/jpeg' });
         res.write(data);
-        res.end(data); // Send the file data to the browser.
     })
 
-    //res.redirect('../public/webapp/index.html');
+    res.redirect('../public/webapp/index.html');
     res.end();
 });
 
