@@ -100,6 +100,9 @@
                                         document.cookie = cookie;
                                     }
 
+                                    function deleteCookie(name) {
+                                        setCookie(name, "", -1);
+                                    }
                                     var id = parseInt(document.cookie.search("email"));
                                     var form = document.getElementById("logout-form");
                                     if (id > 0) {
@@ -112,9 +115,6 @@
                                         btn_logout.onclick = "deleteCookie()";
                                         btn_logout.id = "btn_logout";
                                         form.append(btn_logout);
-                                        var deleteCookie = function(name) {
-                                            setCookie(name, "", -1);
-                                        }
                                     } else {
                                         document.getElementById("btn_logout").remove();
                                         var btn_login = document.createElement("a");
