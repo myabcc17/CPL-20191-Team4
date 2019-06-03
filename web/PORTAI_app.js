@@ -320,7 +320,7 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
     fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
             console.log(filelist);
 
-            var galary = new jsdom.JSDOM(HTMLDivElement).window.document.getElementById("galary");
+            var galary = new jsdom.JSDOM(html).window.document.getElementById("galary");
             //.window.document.getElementById("galary");
             galary.innerHTML = "제발";
         })
