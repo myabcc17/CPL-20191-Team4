@@ -320,7 +320,7 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
         http.createServer(function(req, res) {
             res.writeHead(200, { 'Content-Type': 'image/jpeg' });
             res.end(data); // Send the file data to the browser.
-        }).listen(8080);
+        }).listen(PORT);
         console.log('Server running at http://localhost:8080/');
     });
     res.end();
