@@ -308,7 +308,7 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
 
     fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
             console.log(filelist);
-
+            res.writeHead(200, { 'Content-Type': 'image/jpg' });
             //var galary = document.getElementById("galary");
             for (var i = 0; i < filelist.length; i++) {
                 res.write(filelist[i]);
