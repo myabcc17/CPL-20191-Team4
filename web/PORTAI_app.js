@@ -12,8 +12,8 @@ var bodyParser = require('body-parser'),
 /* 오류 핸들러 모듈 사용 */
 var expressErrorHandler = require('express-error-handler');
 
-// 우혁 js 파일 로드
-require('./galary.js');
+// 우혁 js
+global.document = new JSDOM(html).window.document;
 
 /* 세션 미들웨어 불러오기 */
 var expressSession = require('express-session');
