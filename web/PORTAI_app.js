@@ -325,7 +325,7 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
     fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
             console.log(filelist);
 
-            var galary = new jsdom(html).window.document.getElementById("test");
+            var galary = jsdom(html).window.document.getElementById("test");
             console.log(galary.src);
         })
         //var galary = document.getElementById("galary");
