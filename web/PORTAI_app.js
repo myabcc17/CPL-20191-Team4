@@ -13,6 +13,7 @@ var bodyParser = require('body-parser'),
 var expressErrorHandler = require('express-error-handler');
 
 // 우혁 js
+var length;
 
 
 /* 세션 미들웨어 불러오기 */
@@ -80,7 +81,8 @@ var storage = multer.diskStorage({
         callback(null, 'uploads/' + CurrentSession);
     },
     filename: function(req, file, callback) {
-        callback(null, Date.now() + '_' + file.originalname);
+        var temp = file.originalname.split(".");
+        callback(null, (length + 1) + "." + temp[1]);
     }
 });
 
@@ -301,7 +303,6 @@ router.route('/process/logout').post(function(req, res) {
 
 });
 
-var length;
 
 /* 사진 업로드 라우팅 함수 - 사진 업로드 */
 router.route('/process/photo').post(upload.array('photo', 1), function(req, res) {
@@ -315,7 +316,7 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
         console.log(length);
     })
 
-    res.redirect('../public/webapp/index2.html');
+    res.redirect('../public/webapp/index.html');
     res.end();
 });
 
