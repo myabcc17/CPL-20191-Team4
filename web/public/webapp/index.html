@@ -16,8 +16,7 @@
     <!-- Custom styles for this template -->
     <link href="../css/simple-sidebar.css" rel="stylesheet">
     <link href="../css/bootstrap-imageupload.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
 <body>
@@ -56,9 +55,7 @@
             <nav class="navbar navbar-expand-lg navbar-light border-bottom">
                 <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -67,17 +64,14 @@
                         <li class="nav-item active">
                             <nav class="navbar navbar-light justify-content-between">
                                 <form class="form-inline">
-                                    <input class="form-control mr-sm-2" type="search" @click="" placeholder="Search"
-                                        aria-label="Search" aria-hidden="true">
+                                    <input class="form-control mr-sm-2" type="search" @click="" placeholder="Search" aria-label="Search" aria-hidden="true">
                                     <button class="btn btn-primary mr-sm" type="submit"><i
                                             class="fa fa-search"></i></button>
                                 </form>
                             </nav>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-item" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                style="margin-top: 5px">
+                            <a class="nav-link dropdown-item" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top: 5px">
                                 <i class="fa fa-bell" style="font-size: 1.8rem"></i></a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">지원 요청</a>
@@ -85,9 +79,7 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                style="margin-top: 5px">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top: 5px">
                                 에이미스튜디오
                             </a>
 
@@ -100,7 +92,6 @@
                                 <script>
                                     var id = parseInt(document.cookie.search("email"));
                                     var form = document.getElementById("logout-form");
-                                    document.write(id);
                                     if (id > 0) {
                                         document.getElementById("btn_login").remove();
                                         document.getElementById("btn_register").remove();
@@ -110,7 +101,7 @@
                                         btn_logout.setAttribute("value", "로그아웃");
                                         btn_logout.id = "btn_logout";
                                         form.append(btn_logout);
-                                        var deleteCookie = function (name) {
+                                        var deleteCookie = function(name) {
                                             document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
                                         }
                                         deleteCookie("member");
@@ -140,7 +131,7 @@
                 <div class="left">
                     <div class="new-task">
                         <span>새로 들어온 작업</span>
-                        <div style="vertical-align: top">
+                        <div style="vertical-align: top" id="galary">
                             <img src="../../uploads/leeminjung99@nate.com/1.jpg" width="100px">
                         </div>
 
@@ -161,7 +152,7 @@
                                     <input type="file" name="photo">
                                 </label>
                             </div>
-                            <input type="submit" value="업로드" name="submit">
+                            <input type="submit" value="업로드" name="submit" onclick="addPhoto()">
                         </form>
                     </div>
                 </div>
@@ -181,13 +172,20 @@
         $imageupload.imageupload();
     </script>
     <script>
-        $("#menu-toggle").click(function (e) {
+        $("#menu-toggle").click(function(e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
     </script>
     <script>
-
+        function addPhoto() {
+            var galary = document.getElementById("galary");
+            var startidx = parseInt(document.cookie.search("email"));
+            var endidx = parseInt(document.cookie.search("authorized"));
+            var email = document.cookie.substr(startidx + 8, endidx - 8);
+            var newphoto = document.createElement("img");
+            alert(email);
+        }
     </script>
 </body>
 
