@@ -301,37 +301,31 @@ router.route('/process/logout').post(function(req, res) {
 
 });
 
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
-const { window } = new JSDOM(`...`);
-// or even
-const { document } = (new JSDOM(`...`)).window;
-var html = '' +
-    '<!DOCTYPE html>' +
-    '<html>' +
-    '<head>' +
-    '<title>Blank</title>' +
-    '</head>' +
-    '<body>' +
-    '<p>Hello World</p>' +
-    '</body>' +
-    '</html>';
-
 /* 사진 업로드 라우팅 함수 - 사진 업로드 */
 router.route('/process/photo').post(upload.array('photo', 1), function(req, res) {
     console.log('/process/photo 호출됨.');
     res.redirect('../public/webapp/index.html');
 
+    /*
     fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
-            console.log(filelist);
+        console.log(filelist);
 
-            var galary = document.getElementById("test");
-            console.log(galary.getAttribute("src"));
-        })
-        //var galary = document.getElementById("galary");
+    })
+*/
+    var http = require('http'),
+        fs = require('fs');
 
+    fs.readFile('./uploads/" + CurrentSession + "/1.jpg', function(err, data) {
+        if (err) throw err; // Fail if the file can't be read.
+        http.createServer(function(req, res) {
+            res.writeHead(200, { 'Content-Type': 'image/jpeg' });
+            res.end(data); // Send the file data to the browser.
+        }).listen(8080);
+        console.log('Server running at http://localhost:8080/');
+    });
     res.end();
 });
+
 
 /* 라우터 객체 등록 */
 app.use('/', router);
