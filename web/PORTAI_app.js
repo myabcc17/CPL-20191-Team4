@@ -81,6 +81,12 @@ var storage = multer.diskStorage({
         callback(null, 'uploads/' + CurrentSession);
     },
     filename: function(req, file, callback) {
+
+        fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
+            console.log(filelist);
+            length = filelist.length;
+        })
+
         var temp = file.originalname.split(".");
         callback(null, (length + 1) + "." + temp[1]);
     }
@@ -310,11 +316,6 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
 
 
 
-    fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
-        console.log(filelist);
-        length = filelist.length;
-        console.log(length);
-    })
 
     res.redirect('../public/webapp/index.html');
     res.end();
