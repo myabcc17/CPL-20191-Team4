@@ -312,6 +312,7 @@ var html = '' +
     '<p>Hello World</p>' +
     '</body>' +
     '</html>';
+
 /* 사진 업로드 라우팅 함수 - 사진 업로드 */
 router.route('/process/photo').post(upload.array('photo', 1), function(req, res) {
     console.log('/process/photo 호출됨.');
@@ -320,9 +321,10 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
     fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
             console.log(filelist);
 
-            var galary = new jsdom.JSDOM(html).window.document.getElementById("galary");
-            //.window.document.getElementById("galary");
-            galary.innerHTML = "제발";
+            var galary = new jsdom(html).window.document.getElementById("test");
+            for (var i = 0; i < filelist.length; i++) {
+                console.log(galary.src);
+            }
         })
         //var galary = document.getElementById("galary");
 
