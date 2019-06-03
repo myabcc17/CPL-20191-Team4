@@ -182,7 +182,7 @@
             var galary = document.getElementById("galary");
             var startidx = parseInt(document.cookie.search("email"));
             var endidx = parseInt(document.cookie.search("authorized"));
-            var email = document.cookie.substr(startidx + 8, endidx - 8);
+            var email = document.cookie.slice(startidx + 8, endidx - 10);
             var newphoto = document.createElement("img");
             alert(email);
         }
