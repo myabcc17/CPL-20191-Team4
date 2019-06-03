@@ -301,6 +301,7 @@ router.route('/process/logout').post(function(req, res) {
 
 });
 
+var jsdom = require('jsdom');
 /* 사진 업로드 라우팅 함수 - 사진 업로드 */
 router.route('/process/photo').post(upload.array('photo', 1), function(req, res) {
     console.log('/process/photo 호출됨.');
@@ -308,12 +309,9 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
 
     fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
             console.log(filelist);
-            res.writeHead(200, { 'Content-Type': 'image/jpg' });
-            //var galary = document.getElementById("galary");
-            for (var i = 0; i < filelist.length; i++) {
-                res.write(filelist[i]);
-                res.end();
-            }
+
+            var galary = new jsdom.JSDOM(html).window.document.getElementById("galary");
+            galary.innerHTML = "제발";
         })
         //var galary = document.getElementById("galary");
 
