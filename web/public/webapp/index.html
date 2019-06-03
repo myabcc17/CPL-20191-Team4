@@ -90,6 +90,16 @@
                                 </form>
 
                                 <script>
+                                    function setCookie(name, value, expiredays) {
+                                        var cookie = name + "=" + escape(value) + "; path=/;"
+                                        if (typeof expiredays != 'undefined') {
+                                            var todayDate = new Date();
+                                            todayDate.setDate(todayDate.getDate() + expiredays);
+                                            cookie += "expires=" + todayDate.toGMTString() + ";"
+                                        }
+                                        document.cookie = cookie;
+                                    }
+
                                     var id = parseInt(document.cookie.search("email"));
                                     var form = document.getElementById("logout-form");
                                     if (id > 0) {
@@ -102,7 +112,7 @@
                                         btn_logout.id = "btn_logout";
                                         form.append(btn_logout);
                                         var deleteCookie = function(name) {
-                                            createCookie(name, "", -1);
+                                            setCookie(name, "", -1);
                                         }
                                         deleteCookie("member");
                                     } else {
