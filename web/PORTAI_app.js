@@ -13,6 +13,8 @@ var bodyParser = require('body-parser'),
 var expressErrorHandler = require('express-error-handler');
 
 // 우혁 js
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 global.document = new JSDOM(html).window.document;
 
 /* 세션 미들웨어 불러오기 */
