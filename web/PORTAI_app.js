@@ -305,6 +305,10 @@ router.route('/process/logout').post(function(req, res) {
 router.route('/process/photo').post(upload.array('photo', 1), function(req, res) {
     console.log('/process/photo 호출됨.');
     res.redirect('../public/webapp/index.html');
+
+    fs.readdir("./uploads/leeminjung99@nate.com/", function(error, filelist) {
+        console.log(filelist);
+    })
     res.end();
 });
 
