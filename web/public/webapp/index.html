@@ -129,8 +129,14 @@
                         <span>새로 들어온 작업</span>
                         <div style="vertical-align: top" id="galary">
                             <script>
-                                var fso = new FileList("../../uploads/leeminjung99@nate.com/");
-                                console.log(fso.length);
+                                var galary = document.getElementById("galary");
+                                for (var i = 1; i <= 6; i++) {
+                                    var temp = document.createElement("img");
+                                    temp.src = "../../uploads/leeminjung99@nate.com/" + i + ".png";
+                                    temp.width = "100px";
+                                    document.write("<br>");
+                                    galary.append(temp);
+                                }
                             </script>
                         </div>
 
