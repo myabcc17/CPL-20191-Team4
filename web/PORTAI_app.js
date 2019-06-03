@@ -301,27 +301,22 @@ router.route('/process/logout').post(function(req, res) {
 
 });
 
+var length;
+
 /* 사진 업로드 라우팅 함수 - 사진 업로드 */
 router.route('/process/photo').post(upload.array('photo', 1), function(req, res) {
     console.log('/process/photo 호출됨.');
 
 
-    /*
+
     fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
         console.log(filelist);
-
-    })
-*/
-
-    fs.readFile("./uploads/" + CurrentSession + "/2.png", function(err, data) {
-        if (err) throw err; // Fail if the file can't be read.
-        res.writeHead(200, { "Content-Type": "image/png" });
-        res.write(data);
-        res.end();
+        length = filelist.length;
+        console.log(length);
     })
 
-    //res.redirect('../public/webapp/index.html');
-    //res.end();
+    res.redirect('../public/webapp/index2.html');
+    res.end();
 });
 
 
