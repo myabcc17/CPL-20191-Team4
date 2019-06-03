@@ -85,10 +85,9 @@ var storage = multer.diskStorage({
         fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
             console.log(filelist);
             length = filelist.length;
+            var temp = file.originalname.split(".");
+            callback(null, (length + 1) + "." + temp[1]);
         })
-
-        var temp = file.originalname.split(".");
-        callback(null, (length + 1) + "." + temp[1]);
     }
 });
 
