@@ -306,10 +306,16 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
     console.log('/process/photo 호출됨.');
     res.redirect('../public/webapp/index.html');
 
-    fs.readdir("./uploads/leeminjung99@nate.com/", function(error, filelist) {
+    fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
             console.log(filelist);
-            console.log(filelist[1]);
-            console.log(filelist.length);
+
+            var galary = document.getElementById("galary");
+            for (var i = 0; i < filelist.length; i++) {
+                var temp = document.createElement("img");
+                temp.src = "./uploads/" + CurrentSession + "/" + filelist[i];
+                temp.width = "100px";
+                galary.append(temp);
+            }
         })
         //var galary = document.getElementById("galary");
 
