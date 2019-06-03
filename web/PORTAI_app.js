@@ -311,11 +311,7 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
 
             //var galary = document.getElementById("galary");
             for (var i = 0; i < filelist.length; i++) {
-                var temp = document.createElement("img");
-                temp.src = "./uploads/" + CurrentSession + "/" + filelist[i];
-                temp.width = "100px";
-
-                res.send(temp);
+                res.write("hihi");
             }
         })
         //var galary = document.getElementById("galary");
