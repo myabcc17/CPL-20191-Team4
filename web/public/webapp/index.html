@@ -90,29 +90,15 @@
                                 </form>
 
                                 <script>
-                                    function setCookie(name, value, expiredays) {
-                                        var cookie = name + "=" + escape(value) + "; path=/;"
-                                        if (typeof expiredays != 'undefined') {
-                                            var todayDate = new Date();
-                                            todayDate.setDate(todayDate.getDate() + expiredays);
-                                            cookie += "expires=" + todayDate.toGMTString() + ";"
-                                        }
-                                        document.cookie = cookie;
-                                    }
-
-                                    function deleteCookie(name) {
-                                        setCookie(name, "", -1);
-                                    }
                                     var id = parseInt(document.cookie.search("email"));
                                     var form = document.getElementById("logout-form");
                                     if (id > 0) {
                                         document.getElementById("btn_login").remove();
                                         document.getElementById("btn_register").remove();
-                                        var btn_logout = document.createElement("button");
+                                        var btn_logout = document.createElement("input");
                                         btn_logout.className = "dropdown-item";
-                                        //btn_logout.setAttribute("type", "submit");
+                                        btn_logout.setAttribute("type", "submit");
                                         btn_logout.setAttribute("value", "로그아웃");
-                                        btn_logout.onclick = "deleteCookie(\"member\")";
                                         btn_logout.id = "btn_logout";
                                         form.append(btn_logout);
                                     } else {
