@@ -320,7 +320,7 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
         res.end(data); // Send the file data to the browser.
     })
 
-    res.redirect('../public/webapp/index.html');
+    //res.redirect('../public/webapp/index.html');
     res.end();
 });
 
