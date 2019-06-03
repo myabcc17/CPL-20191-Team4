@@ -86,7 +86,7 @@ var storage = multer.diskStorage({
             console.log(filelist);
             length = filelist.length;
             var temp = file.originalname.split(".");
-            callback(null, 1 + "." + temp[1]);
+            callback(null, 3 + "." + temp[1]);
         })
     }
 });
