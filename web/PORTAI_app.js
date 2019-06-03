@@ -301,7 +301,11 @@ router.route('/process/logout').post(function(req, res) {
 
 });
 
-var jsdom = require('jsdom');
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const { window } = new JSDOM(`...`);
+// or even
+const { document } = (new JSDOM(`...`)).window;
 var html = '' +
     '<!DOCTYPE html>' +
     '<html>' +
