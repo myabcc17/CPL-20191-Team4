@@ -311,7 +311,9 @@ router.route('/process/photo').post(upload.array('photo', 1), function(req, res)
 
             //var galary = document.getElementById("galary");
             for (var i = 0; i < filelist.length; i++) {
-                res.write("hihi");
+                res.writeHead(200, { "Content-Type": "image/jpg" });
+                res.write(filelist[i]);
+                res.end();
             }
         })
         //var galary = document.getElementById("galary");
