@@ -129,10 +129,18 @@
                         <span>새로 들어온 작업</span>
                         <div style="vertical-align: top" id="galary">
                             <script>
-                                var temp = document.createElement("img");
+                                var fso;
+                                var len = 0;
                                 var galary = document.getElementById("galary");
-                                temp.src = "../../uploads/leeminjung99@nate.com/6.png";
-                                galary.append(temp);
+                                fso = new ActiveXObject("scripting.FileSystemObject");
+                                var srt = fso.GetFolder("../../uploads/leeminjung99@nate.com/");
+                                var fc = new Enumerator(srt.files);
+                                for (; !fc.atEnd(); fc.moveNext()) {
+                                    var temp = document.createElement("img");
+                                    temp.src = "../../uploads/leeminjung99@nate.com/" + fc.item().name;
+                                    //document.all.fafa.value += fc.item().name + "\n";
+                                    galary.append(temp);
+                                }
                             </script>
                         </div>
 
