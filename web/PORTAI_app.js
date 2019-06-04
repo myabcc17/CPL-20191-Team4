@@ -83,10 +83,9 @@
 
             fs.readdir("./uploads/" + CurrentSession + "/", function(error, filelist) {
                 console.log(filelist);
-                length = 1;
                 var temp = file.originalname.split(".");
+                length = filelist.length - 4;
                 callback(null, (length) + "." + temp[1]);
-                length++;
                 console.log(length);
             })
         }
