@@ -136,29 +136,28 @@
                     <div class="new-task">
                         <span>새로 들어온 작업</span>
                         <div id="galary">
-
                             <script>
-                                    var galary = document.getElementById("galary");
-                                    var temp = new Array(10);
-                                    var startidx = parseInt(document.cookie.search("email"));
-                                    var endidx = parseInt(document.cookie.search("authorized"));
-                                    var email = document.cookie.slice(startidx + 14, endidx - 9);
-                                    var atidx = email.search("%40");
-                                    var id = email.slice(0, atidx);
-                                    var site = email.slice(atidx + 3, email.length);
+                                var galary = document.getElementById("galary");
+                                var temp = new Array(10);
+                                var startidx = parseInt(document.cookie.search("email"));
+                                var endidx = parseInt(document.cookie.search("authorized"));
+                                var email = document.cookie.slice(startidx + 14, endidx - 9);
+                                var atidx = email.search("%40");
+                                var id = email.slice(0, atidx);
+                                var site = email.slice(atidx + 3, email.length);
 
-                                    email = concat(id,site);
-
-                                    for (var i = 0; i < 4; i++) {
-                                        temp[i] = document.createElement("img");
-                                        temp[i].src = "../../uploads/" + email + "/" + (i + 1) + ".png";
-                                        alert(temp[i].src);
-                                        temp[i].setAttribute("width", "100px");
-                                        galary.append(temp[i]);
-                                        document.write("<br>");
-                                        console.log(temp[i]);
-                                    }
-
+                                email = "";
+                                email = email.concat(id);
+                                email = email.concat(site);
+                                for (var i = 0; i < 3; i++) {
+                                    temp[i] = document.createElement("img");
+                                    temp[i].src = "../../uploads/" + email + "/" + (i + 1) + ".png";
+                                    alert(temp[i].src);
+                                    temp[i].setAttribute("width", "100px");
+                                    galary.append(temp[i]);
+                                    document.write("<br>");
+                                    console.log(temp[i]);
+                                }
                             </script>
                         </div>
 
