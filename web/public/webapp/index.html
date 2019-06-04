@@ -152,14 +152,11 @@
                                     email = "";
                                     email = email.concat(id) + "@";
                                     email = email.concat(site);
+                                    temp[i] = document.createElement("img");
+                                    temp[i].src = "../../uploads/" + email + "/" + "1.png";
 
-                                    for (var i = 0; i < 3; i++) {
-                                        temp[i] = document.createElement("img");
-                                        temp[i].src = "../../uploads/" + email + "/" + (i + 1) + ".png";
-
-                                        temp[i].setAttribute("width", "100px");
-                                        galary.append(temp[i]);
-                                    }
+                                    temp[i].setAttribute("width", "100px");
+                                    galary.append(temp[i]);
                                 }
                             </script>
                         </div>
