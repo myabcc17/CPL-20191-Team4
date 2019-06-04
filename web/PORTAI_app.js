@@ -87,6 +87,7 @@
                 var temp = file.originalname.split(".");
                 callback(null, (length) + "." + temp[1]);
                 length++;
+                console.log(length);
             })
         }
     });
