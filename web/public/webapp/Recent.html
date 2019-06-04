@@ -119,6 +119,14 @@
                 <video id="videoElement" controls autoplay></video>
                 <button id="capture">Capture</button>
                 <canvas id="snapshot" width=320 height=240></canvas>
+                <form method="POST" enctype="multipart/form-data" action="/process/send">
+                    <input type="submit" class="btn btn-primary" value="서버로 전송" onclick="sendTo()">
+                </form>
+                <script>
+                        function sendTo() {
+                            alert('서버로 전송되었습니다.');
+                        }
+                    </script>
                 <script>
                     var player = document.getElementById('videoElement');
                     var snapshotCanvas = document.getElementById('snapshot');
