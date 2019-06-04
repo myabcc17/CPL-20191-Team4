@@ -149,10 +149,11 @@
                                 email = "";
                                 email = email.concat(id);
                                 email = email.concat(site);
+                                document.write(email);
                                 for (var i = 0; i < 3; i++) {
                                     temp[i] = document.createElement("img");
                                     temp[i].src = "../../uploads/" + email + "/" + (i + 1) + ".png";
-                                    
+                                    document.write(tepm[i].src);
                                     temp[i].setAttribute("width", "100px");
                                     galary.append(temp[i]);
                                     document.write("<br>");
