@@ -137,7 +137,9 @@
                         <span>새로 들어온 작업</span>
                         <div id="galary">
                             <button onclick="load()" class="btn btn-default">불러오기</button>
+                            <br>
                             <script>
+                                function onclick() {
                                     var galary = document.getElementById("galary");
                                     var temp = new Array(10);
                                     var startidx = parseInt(document.cookie.search("email"));
@@ -150,16 +152,16 @@
                                     email = "";
                                     email = email.concat(id) + "@";
                                     email = email.concat(site);
-    
+
                                     for (var i = 0; i < 3; i++) {
                                         temp[i] = document.createElement("img");
                                         temp[i].src = "../../uploads/" + email + "/" + (i + 1) + ".png";
-                                        
+
                                         temp[i].setAttribute("width", "100px");
                                         galary.append(temp[i]);
                                         document.write("<br>");
                                     }
-
+                                }
                             </script>
                         </div>
 
