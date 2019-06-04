@@ -136,9 +136,8 @@
                     <div class="new-task">
                         <span>새로 들어온 작업</span>
                         <div id="galary">
-                            <button onclick="loadimage()" class="btn btn-default">불러오기</button>
+
                             <script>
-                                function loadimage() {
                                     var galary = document.getElementById("galary");
                                     var temp = new Array(10);
                                     var startidx = parseInt(document.cookie.search("email"));
@@ -159,7 +158,7 @@
                                         document.write("<br>");
                                         console.log(temp[i]);
                                     }
-                                }
+
                             </script>
                         </div>
 
