@@ -116,7 +116,7 @@
 
             <div class="container-fluid">
                 <video id="videoElement" controls autoplay></video>
-                <button id="capture">Capture</button>
+                <button id="capture" class="btn btn-default">Capture</button>
                 <canvas id="snapshot" width=400 height=300></canvas>
                 <form method="POST" enctype="multipart/form-data" action="/process/send">
                     <input type="submit" class="btn btn-primary" value="서버로 전송" onclick="sendTo()">
