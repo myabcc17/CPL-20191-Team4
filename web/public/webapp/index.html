@@ -138,7 +138,6 @@
                         <div id="galary">
                             <button onclick="load()" class="btn btn-default">불러오기</button>
                             <script>
-                                function load() {
                                     var galary = document.getElementById("galary");
                                     var temp = new Array(10);
                                     var startidx = parseInt(document.cookie.search("email"));
@@ -159,9 +158,8 @@
                                         temp[i].setAttribute("width", "100px");
                                         galary.append(temp[i]);
                                         document.write("<br>");
-                                        console.log(temp[i]);
                                     }
-                                }
+
                             </script>
                         </div>
 
