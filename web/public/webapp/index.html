@@ -141,7 +141,7 @@
                             <script>
                                 function load() {
                                     var galary = document.getElementById("galary");
-                                    var temp = new Array(10);
+                                    var temp;
                                     var startidx = parseInt(document.cookie.search("email"));
                                     var endidx = parseInt(document.cookie.search("authorized"));
                                     var email = document.cookie.slice(startidx + 14, endidx - 9);
@@ -152,11 +152,11 @@
                                     email = "";
                                     email = email.concat(id) + "@";
                                     email = email.concat(site);
-                                    temp[i] = document.createElement("img");
-                                    temp[i].src = "../../uploads/" + email + "/" + "1.png";
+                                    temp = document.createElement("img");
+                                    temp.src = "../../uploads/" + email + "/" + "1.png";
 
-                                    temp[i].setAttribute("width", "100px");
-                                    galary.append(temp[i]);
+                                    temp.setAttribute("width", "100px");
+                                    galary.append(temp);
                                 }
                             </script>
                         </div>
