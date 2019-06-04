@@ -16,7 +16,8 @@
     <!-- Custom styles for this template -->
     <link href="../css/simple-sidebar.css" rel="stylesheet">
     <link href="../css/bootstrap-imageupload.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
 <body>
@@ -55,7 +56,9 @@
             <nav class="navbar navbar-expand-lg navbar-light border-bottom">
                 <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -64,14 +67,17 @@
                         <li class="nav-item active">
                             <nav class="navbar navbar-light justify-content-between">
                                 <form class="form-inline">
-                                    <input class="form-control mr-sm-2" type="search" @click="" placeholder="Search" aria-label="Search" aria-hidden="true">
+                                    <input class="form-control mr-sm-2" type="search" @click="" placeholder="Search"
+                                        aria-label="Search" aria-hidden="true">
                                     <button class="btn btn-primary mr-sm" type="submit"><i
                                             class="fa fa-search"></i></button>
                                 </form>
                             </nav>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-item" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top: 5px">
+                            <a class="nav-link dropdown-item" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                style="margin-top: 5px">
                                 <i class="fa fa-bell" style="font-size: 1.8rem"></i></a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">지원 요청</a>
@@ -79,7 +85,9 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top: 5px">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                style="margin-top: 5px">
                                 에이미스튜디오
                             </a>
 
@@ -128,17 +136,28 @@
                     <div class="new-task">
                         <span>새로 들어온 작업</span>
                         <div id="galary">
+                            <button onclick="loadimage()" class="btn btn-default"></button>
                             <script>
-                                var galary = document.getElementById("galary");
-                                var temp = new Array(10);
+                                function loadimage() {
+                                    var galary = document.getElementById("galary");
+                                    var temp = new Array(10);
+                                    var startidx = parseInt(document.cookie.search("email"));
+                                    var endidx = parseInt(document.cookie.search("authorized"));
+                                    var email = document.cookie.slice(startidx + 14, endidx - 9);
+                                    var atidx = email.search("%40");
+                                    var id = email.slice(0, atidx);
+                                    var site = email.slice(atidx + 3, email.length);
 
-                                for (var i = 0; i < 3; i++) {
-                                    temp[i] = document.createElement("img");
-                                    temp[i].src = "../../uploads/leeminjung99@nate.com/" + (i + 1) + ".png";
-                                    temp[i].setAttribute("width", "100px");
-                                    galary.append(temp[i]);
-                                    document.write("<br>");
-                                    console.log(temp[i]);
+                                    email = concat(id,site);
+
+                                    for (var i = 0; i < 4; i++) {
+                                        temp[i] = document.createElement("img");
+                                        temp[i].src = "../../uploads/" + email + "/" + (i + 1) + ".png";
+                                        temp[i].setAttribute("width", "100px");
+                                        galary.append(temp[i]);
+                                        document.write("<br>");
+                                        console.log(temp[i]);
+                                    }
                                 }
                             </script>
                         </div>
@@ -183,7 +202,7 @@
         $imageupload.imageupload();
     </script>
     <script>
-        $("#menu-toggle").click(function(e) {
+        $("#menu-toggle").click(function (e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
@@ -202,12 +221,12 @@
             // 현재 로그인된 사용자 이메일만 잘라낸것
             email = email.concat(id, site);
         }
-        
+
         function sendTo() {
             alert('서버로 전송되었습니다.');
         }
     </script>
-    
+
 </body>
 
 </html>
