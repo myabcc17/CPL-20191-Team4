@@ -162,6 +162,9 @@
                             </div>
                             <input type="submit" class="btn btn-primary" value="업로드" name="submit" onclick="addPhoto()">
                         </form>
+                        <form method="POST" enctype="multipart/form-data" action="/process/send">
+                            <input type="submit" class="btn btn-primary" value="서버로 전송" onclick="sendTo()">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -199,7 +202,12 @@
             // 현재 로그인된 사용자 이메일만 잘라낸것
             email = email.concat(id, site);
         }
+        
+        function sendTo() {
+            alert('서버로 전송되었습니다.');
+        }
     </script>
+    
 </body>
 
 </html>
