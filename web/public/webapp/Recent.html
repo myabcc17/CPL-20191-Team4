@@ -43,8 +43,7 @@
             <div class="list-group list-group-flush">
                 <a href="index.html" style="text-decoration-line:none" class="list-group-item list-group-item-action"><i
                         class="fa fa-plus-square"> 새로 들어온 작업</i> </a>
-                <a href="Recent.html" class="list-group-item list-group-item-action"><i class="fa fa-history"> 최근 작업
-                        사진</i></a>
+                <a href="Recent.html" class="list-group-item list-group-item-action"><i class="fa fa-history"> 웹캠</i></a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <li>
@@ -118,7 +117,7 @@
             <div class="container-fluid">
                 <video id="videoElement" controls autoplay></video>
                 <button id="capture">Capture</button>
-                <canvas id="snapshot" width=320 height=240></canvas>
+                <canvas id="snapshot" width=400 height=300></canvas>
                 <form method="POST" enctype="multipart/form-data" action="/process/send">
                     <input type="submit" class="btn btn-primary" value="서버로 전송" onclick="sendTo()">
                 </form>
